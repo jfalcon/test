@@ -4,7 +4,7 @@
 !package-lock.json
 !package.json
 !public
-!run_tests.sh
+!scripts
 !src
 !test
 !vite.config.ts
