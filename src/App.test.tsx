@@ -1,21 +1,58 @@
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import App from './App'
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import App from './App';
+import '@testing-library/jest-dom';
 
-describe('App Component', () => {
-  it('renders the heading "Vite + React"', () => {
-    render(<App />)
-    const heading = screen.getByRole('heading', { name: /Vite \+ React/i })
-    expect(heading).toBeInTheDocument()
-  })
+// mock child components to isolate App tests
+vi.mock('./components/AddTodo', () => ({
+  default: () => <div data-testid="add-todo">AddTodo</div>,
+}));
 
-  it('increments count when the button is clicked', async () => {
-    render(<App />)
-    // Find the button with the initial text "count is 0"
-    const button = screen.getByRole('button', { name: /count is 0/i })
-    // Simulate a click event
-    await userEvent.click(button)
-    // Verify that the button now shows "count is 1"
-    expect(button).toHaveTextContent('count is 1')
-  })
+vi.mock('./components/TodoList', () => ({
+  default: () => <div data-testid="todo-list">TodoList</div>,
+}));
+
+vi.mock('./components/FilterButtons', () => ({
+  default: () => <div data-testid="filter-buttons">FilterButtons</div>,
+}));
+
+describe('App Component P2P Tests', () => {
+  beforeEach(() => {
+    // clear localStorage and reset theme before each test
+    window.localStorage.clear();
+    document.documentElement.removeAttribute('data-theme');
+  });
+
+  it('renders without crashing', () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+
+    expect(screen.getByText('Todo List')).toBeInTheDocument();
+  });
+
+  it('renders all child components', () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+
+    expect(screen.getByTestId('add-todo')).toBeInTheDocument();
+    expect(screen.getByTestId('todo-list')).toBeInTheDocument();
+    expect(screen.getByTestId('filter-buttons')).toBeInTheDocument();
+  });
+
+  it('initializes with light theme by default', () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+
+    expect(document.documentElement).not.toHaveAttribute('data-theme', 'dark');
+  });
 })
