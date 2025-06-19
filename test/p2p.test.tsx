@@ -19,6 +19,12 @@ describe('P2P Tests', () => {
       default: () => <div data-testid="filter-buttons">FilterButtons</div>,
     }));
 
+    vi.mock('../src/components/ThemeToggle', () => ({
+      default: ({ onClick }: { onClick: () => void }) => (
+        <button onClick={onClick} data-testid="theme-toggle">Toggle Theme</button>
+      )
+    }));
+
     it('renders without crashing', () => {
       render(
         <Provider store={store}>
