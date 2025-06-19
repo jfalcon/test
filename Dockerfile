@@ -2,6 +2,6 @@ FROM node:22.14.0-alpine3.21@sha256:9bef0ef1e268f60627da9ba7d7605e8831d5b56ad074
 
 WORKDIR /app
 COPY . .
-RUN npm i
+RUN npm ci
 
 CMD ["sh"]
