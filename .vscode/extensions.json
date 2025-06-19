@@ -3,8 +3,8 @@
     "davidanson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
-    "streetsidesoftware.code-spell-checker",
-    "ms-azuretools.vscode-containers"
+    "ms-azuretools.vscode-containers",
+    "streetsidesoftware.code-spell-checker"
   ],
 	"unwantedRecommendations": []
 }
