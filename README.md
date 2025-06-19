@@ -6,7 +6,7 @@ This command builds a docker image with the code of this repository and runs the
 
 ```sh
 ./scripts/build_docker.sh my_app
-docker run -t my_app ./scripts/run_tests.sh
+docker run -t my_app ./run_tests.sh
 ```
 
 ## Running a specific test
@@ -15,7 +15,7 @@ This example runs all tests matching the name "basic":
 
 ```sh
 ./scripts/build_docker.sh my_app
-docker run -t my_app ./scripts/run_tests.sh basic
+docker run -t my_app ./run_tests.sh basic
 ```
 
 ## Running a vite dev server
