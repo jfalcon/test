@@ -1,0 +1,10 @@
+{
+	"recommendations": [
+    "davidanson.vscode-markdownlint",
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "streetsidesoftware.code-spell-checker",
+    "ms-azuretools.vscode-containers"
+  ],
+	"unwantedRecommendations": []
+}

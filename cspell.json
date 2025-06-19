@@ -1,0 +1,52 @@
+{
+  "version": "0.2",
+  "allowCompoundWords": true,
+  "enabledLanguageIds": [
+    "asciidoc",
+    "git-commit",
+    "javascript",
+    "json",
+    "jsonc",
+    "markdown",
+    "plaintext",
+    "shellscript",
+    "text",
+    "typescript",
+    "toml",
+    "yaml",
+    "yml"
+  ],
+  "dictionaries": [
+    "corp-terms",
+    "fonts",
+    "spanish"
+  ],
+  "language": "en",
+  "ignorePaths": [
+    "**/{,.}bin/",
+    "**/{,.}build/",
+    "**/{,.}cache/",
+    "**/{,.}compiled/",
+    "**/{,.}dist/",
+    "**/.git/",
+    "**/.hooks/",
+    "**/.idea/",
+    "**/.next/",
+    "**/.npm/",
+    "**/.out/",
+    "**/.svn/",
+    "**/.vs/",
+    "**/.vscode/",
+    "**/node_modules/",
+    "**/*.code-workspace",
+    "**/*.sublime-project",
+    "**/*.sublime-workspace"
+  ],
+  "ignoreWords": [
+    "njsproj",
+    "ntvs"
+  ],
+  "words": [
+    "Vite"
+  ]
+}
