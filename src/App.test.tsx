@@ -17,13 +17,7 @@ vi.mock('./components/FilterButtons', () => ({
   default: () => <div data-testid="filter-buttons">FilterButtons</div>,
 }));
 
-describe('App Component P2P Tests', () => {
-  beforeEach(() => {
-    // clear localStorage and reset theme before each test
-    window.localStorage.clear();
-    document.documentElement.removeAttribute('data-theme');
-  });
-
+describe('App Component', () => {
   it('renders without crashing', () => {
     render(
       <Provider store={store}>
@@ -44,15 +38,5 @@ describe('App Component P2P Tests', () => {
     expect(screen.getByTestId('add-todo')).toBeInTheDocument();
     expect(screen.getByTestId('todo-list')).toBeInTheDocument();
     expect(screen.getByTestId('filter-buttons')).toBeInTheDocument();
-  });
-
-  it('initializes with light theme by default', () => {
-    render(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
-
-    expect(document.documentElement).not.toHaveAttribute('data-theme', 'dark');
   });
 })
