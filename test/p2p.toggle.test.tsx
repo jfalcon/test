@@ -4,7 +4,7 @@ import { store } from '../src/store';
 import App from '../src/App';
 import '@testing-library/jest-dom';
 
-describe('Toggle Tests', () => {
+describe('P2P Toggle Tests', () => {
   const originalMatchMedia = window.matchMedia;
 
   beforeEach(() => {
