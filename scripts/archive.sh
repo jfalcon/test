@@ -17,5 +17,5 @@ fi
 
 # avoid including zip files (if rerun)
 cd "$PARENT_DIR" > /dev/null 2>&1
-zip -r "$OUT_FILE" . -x "./*.zip" "./.git/*" "./dist/*" "./node_modules/*"
+zip -r "$OUT_FILE" . -x "./*.zip" "./.git/*" "./.vscode/*" "./dist/*" "./node_modules/*"
 cd - > /dev/null 2>&1
