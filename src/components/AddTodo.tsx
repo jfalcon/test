@@ -25,7 +25,11 @@ const AddTodo: React.FC = () => {
           placeholder="What needs to be done?"
           aria-label="New todo text"
         />
-        <button type="submit" className="add-button">
+        <button
+          type="submit"
+          className="add-button"
+          data-testid="test-button"
+        >
           Add Todo
         </button>
       </form>

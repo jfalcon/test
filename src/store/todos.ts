@@ -5,6 +5,7 @@ export interface Todo {
   id: number;
   text: string;
   completed: boolean;
+  count: number;
 }
 
 // not using enums for this project
@@ -29,6 +30,7 @@ export const todoSlice = createSlice({
         id: state.todos.length,
         text: action.payload,
         completed: false,
+        count: state.todos.length,
       });
     },
     deleteTodo: (state, action: PayloadAction<number>) => {
