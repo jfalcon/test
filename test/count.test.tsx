@@ -24,7 +24,7 @@ describe('Count Test', () => {
 
     fireEvent.change(addInput, { target: { value: '!' } });
     fireEvent.click(addButton);
-console.log('; ;', countMessage.innerHTML)
+
     // innerText doesn't seem to work with this library
     const count = parseInt((countMessage.innerHTML || '').replace(/[^0-9]/g, ''), 10) || 0;
     expect(count).toStrictEqual(3);
