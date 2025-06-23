@@ -28,7 +28,7 @@ const AddTodo: React.FC = () => {
         <button
           type="submit"
           className="add-button"
-          data-testid="test-button"
+          data-testid="add-todo"
         >
           Add Todo
         </button>

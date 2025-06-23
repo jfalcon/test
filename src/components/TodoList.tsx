@@ -16,9 +16,9 @@ const TodoList: React.FC = () => {
   const countSum = filteredTodos.reduce((sum, todo) => sum + todo.count, 0);
 
   return (
-    <section aria-labelledby="todo-list-heading">
+    <section data-testid="todo-list" aria-labelledby="todo-list-heading">
       <h2 id="todo-list-heading" className="visually-hidden">Todo Items</h2>
-      <div data-testid="test-message">
+      <div data-testid="todo-sum-message">
         Sum of todo counts: {countSum}
       </div>
       {filteredTodos.length === 0 ? (

@@ -15,7 +15,11 @@ const FilterButtons: React.FC = () => {
   ] as const;
 
   return (
-    <section aria-labelledby="filter-heading" className="filter-buttons">
+    <section
+      aria-labelledby="filter-heading"
+      data-testid="filter-buttons"
+      className="filter-buttons"
+    >
       <h2 id="filter-heading" className="visually-hidden">Filter Todos</h2>
       <div className="filter-group">
         {filterOptions.map((option) => (
