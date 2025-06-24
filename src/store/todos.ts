@@ -8,10 +8,12 @@ export interface Todo {
   count: number;
 }
 
+export const STORAGE_KEY = 'todos';
+
 // not using enums for this project
 export type FilterStatus = 'ALL' | 'ACTIVE' | 'COMPLETED';
 
-interface TodoState {
+export interface TodoState {
   todos: Todo[];
   filter: FilterStatus;
 }
@@ -21,8 +23,34 @@ const initialState: TodoState = {
   filter: 'ALL', // not using enums for this project
 };
 
+export const loadTodos = (): Todo[] => {
+  try {
+    const serialized = localStorage.getItem(STORAGE_KEY);
+    const parsed: Partial<Todo[]> = serialized ? JSON.parse(serialized) : [];
+
+    // if the data was corrupted then ensure at least the shape is restored
+    return parsed.map(p => {
+      return {
+        id: p?.id ?? 0,
+        text: p?.text ?? '',
+        completed: p?.completed ?? false,
+        count: p?.count ?? 0,
+      };
+    });
+  } catch {
+    return [];
+  }
+};
+
+export const saveTodos = (todos: Todo[]) => {
+  try {
+    const serialized = JSON.stringify(todos);
+    localStorage.setItem(STORAGE_KEY, serialized);
+  } catch {} // ignore write errors
+};
+
 export const todoSlice = createSlice({
-  name: 'todos',
+  name: STORAGE_KEY,
   initialState,
   reducers: {
     addTodo: (state, action: PayloadAction<string>) => {
