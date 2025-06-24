@@ -109,7 +109,22 @@ describe('P2P Tests', () => {
       expect(window.localStorage.getItem('theme')).toBe('light');
     });
 
-    it('remembers user theme preference', async () => {
+    it('remembers light theme preference', async () => {
+      const { default: App } = await import('../src/App');
+
+      // set dark mode in localStorage
+      window.localStorage.setItem('theme', 'light');
+
+      render(
+        <Provider store={store}>
+          <App />
+        </Provider>
+      );
+
+      expect(document.documentElement).toHaveAttribute('data-theme', 'light');
+    });
+
+    it('remembers dark theme preference', async () => {
       const { default: App } = await import('../src/App');
 
       // set dark mode in localStorage

@@ -1,8 +1,11 @@
 // src/components/ThemeToggle.tsx
 import React, { useState, useEffect } from 'react';
 
+type ThemeMode = 'light' | 'dark';
+const defaultTheme = (localStorage.getItem('theme') ?? 'light') as ThemeMode;
+
 const ThemeToggle: React.FC = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<ThemeMode>(defaultTheme);
 
   // Load saved theme from localStorage on component mount
   useEffect(() => {
