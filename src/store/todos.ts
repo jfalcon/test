@@ -8,6 +8,8 @@ export interface Todo {
   count: number;
 }
 
+export const STORAGE_KEY = 'todos';
+
 // not using enums for this project
 export type FilterStatus = 'ALL' | 'ACTIVE' | 'COMPLETED';
 
@@ -22,7 +24,7 @@ const initialState: TodoState = {
 };
 
 export const todoSlice = createSlice({
-  name: 'todos',
+  name: STORAGE_KEY,
   initialState,
   reducers: {
     addTodo: (state, action: PayloadAction<string>) => {
