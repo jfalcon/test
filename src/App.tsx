@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import AddTodo from './components/AddTodo';
+import LoadTodos from './components/LoadTodos';
 import TodoList from './components/TodoList';
 import FilterButtons from './components/FilterButtons';
 import ThemeToggle from './components/ThemeToggle';
@@ -15,7 +15,7 @@ const App: React.FC = () => {
           <h1>Todo List</h1>
           <ThemeToggle />
         </header>
-        <AddTodo />
+        <LoadTodos />
         <FilterButtons />
         <TodoList />
       </main>

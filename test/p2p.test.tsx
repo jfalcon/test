@@ -33,38 +33,9 @@ describe('P2P Tests', () => {
         </Provider>
       );
 
-      expect(screen.getByTestId('add-todo')).toBeInTheDocument();
+      expect(screen.getByTestId('load-todos')).toBeInTheDocument();
       expect(screen.getByTestId('todo-list')).toBeInTheDocument();
       expect(screen.getByTestId('filter-buttons')).toBeInTheDocument();
-    });
-  })
-
-  describe('Count Test', () => {
-    it('counts add todo clicks', async () => {
-      const { default: App } = await import('../src/App');
-
-      render(
-        <Provider store={store}>
-          <App />
-        </Provider>
-      );
-
-      const addButton = screen.getByTestId('add-todo');
-      const addInput = screen.getByLabelText('New todo text');
-      const countMessage = screen.getByTestId('todo-sum-message');
-
-      fireEvent.change(addInput, { target: { value: 'Hello' } });
-      fireEvent.click(addButton);
-
-      fireEvent.change(addInput, { target: { value: 'World' } });
-      fireEvent.click(addButton);
-
-      fireEvent.change(addInput, { target: { value: '!' } });
-      fireEvent.click(addButton);
-
-      // innerText doesn't seem to work with this library
-      const count = parseInt((countMessage.innerHTML || '').replace(/[^0-9]/g, ''), 10) || 0;
-      expect(count).toStrictEqual(3);
     });
   })
 

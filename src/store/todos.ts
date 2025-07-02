@@ -61,6 +61,18 @@ export const todoSlice = createSlice({
         count: state.todos.length,
       });
     },
+    replaceTodos: (state, action: PayloadAction<string[]>) => {
+      state.todos = [];
+
+      for (const todo of action.payload) {
+        state.todos.push({
+          id: state.todos.length,
+          text: todo,
+          completed: false,
+          count: state.todos.length,
+        });
+      }
+    },
     deleteTodo: (state, action: PayloadAction<number>) => {
       state.todos = state.todos.filter(todo => todo.id !== action.payload);
     },
@@ -74,5 +86,5 @@ export const todoSlice = createSlice({
   },
 });
 
-export const { addTodo, toggleTodo, deleteTodo, setFilter } = todoSlice.actions;
+export const { addTodo, replaceTodos, toggleTodo, deleteTodo, setFilter } = todoSlice.actions;
 export default todoSlice.reducer;

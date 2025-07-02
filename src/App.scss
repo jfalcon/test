@@ -41,35 +41,17 @@
   }
 }
 
-.add-todo-form {
-  display: flex;
-  margin-bottom: variables.$spacing-medium;
+button.load-button {
+  padding: variables.$spacing-small variables.$spacing-medium;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 0 variables.$border-radius 0;
+  cursor: pointer;
+  transition: background-color 0.2s;
 
-  input {
-    flex: 1;
-    padding: variables.$spacing-small;
-    border: 1px solid color var(--color-primary);
-    border-radius: variables.$border-radius 0 0 variables.$border-radius;
-    font-size: 1rem;
-
-    &:focus {
-      outline: none;
-      border-color: var(--color-primary);
-    }
-  }
-
-  button {
-    padding: variables.$spacing-small variables.$spacing-medium;
-    background-color: var(--color-primary);
-    color: white;
-    border: none;
-    border-radius: 0 variables.$border-radius 0;
-    cursor: pointer;
-    transition: background-color 0.2s;
-
-    &:hover {
-      background-color: var(--color-hover);
-    }
+  &:hover {
+    background-color: var(--color-hover);
   }
 }
 
