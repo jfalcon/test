@@ -1,76 +1,61 @@
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from '../src/store';
+import fs from 'node:fs';
+import path from 'node:path';
+import { isColorDifferent } from '../src/utility/color';
 
-const DAY_IN_MS = 86400000; // 1 day = 86,400,000 milliseoncds
+type CssVarMap = Record<string, string>;
+type ScopeVarsMap = Record<string, CssVarMap>;
 
-// sample XML response with mixed dates, normally this would be in a fixtures
-// folder somewhere, but keeping it inline for the sake of clarity for this
-const mockXml = `
-<?xml version="1.0" encoding="windows-1252"?>
-<weeklyevents>
-	<event>
-		<title>Prelim Industrial Production m/m</title>
-		<country>JPY</country>
-    <date><![CDATA[${new Date(Date.now() - DAY_IN_MS).toISOString().split('T')[0]}]]></date>
-		<time><![CDATA[11:50pm]]></time>
-		<impact><![CDATA[High]]></impact>
-		<forecast><![CDATA[3.4%]]></forecast>
-		<previous><![CDATA[-0.9%]]></previous>
-		<url><![CDATA[https://url.com/calendar/225-jn-prelim-industrial-production-mm]]></url>
-	</event>
-	<event>
-		<title>MI Inflation Gauge m/m</title>
-		<country>AUD</country>
-    <date><![CDATA[${new Date().toISOString().split('T')[0]}]]></date>
-		<time><![CDATA[1:00am]]></time>
-		<impact><![CDATA[High]]></impact>
-		<forecast><![CDATA[3.4%]]></forecast>
-		<previous><![CDATA[-0.9%]]></previous>
-		<url><![CDATA[https://url.com/calendar/294-au-mi-inflation-gauge-mm]]></url>
-	</event>
-	<event>
-		<title>BOE Gov Bailey Speaks</title>
-		<country>GBP</country>
-    <date><![CDATA[${new Date(Date.now() - DAY_IN_MS).toISOString().split('T')[0]}]]></date>
-		<time><![CDATA[3:45pm]]></time>
-		<impact><![CDATA[Low]]></impact>
-		<forecast><![CDATA[3.4%]]></forecast>
-		<previous><![CDATA[-0.9%]]></previous>
-		<url><![CDATA[https://url.com/calendar/838-uk-boe-gov-bailey-speaks]]></url>
-	</event>
-</weeklyevents>`;
+// just a helper function since jsdom cannot read any variable not explicity set
+// so rather than go through the DOM to test this, just go to the source directly
+function extractCssVariables(filePath: string): ScopeVarsMap {
+  let content = fs.readFileSync(path.resolve(filePath), 'utf-8');
+
+  // remove single-line comments and comment blocks
+  content = content.replace(/\/\/.*$/gm, '');
+  content = content.replace(/\/\*[\s\S]*?\*\//g, '');
+
+  const scopeVarMap: ScopeVarsMap = {};
+
+  // match selector blocks (stop at matching closing brace)
+  const blockRegex = /([^{]+?)\s*\{\s*([^{}]*?)\s*\}/gs;
+
+  let blockMatch: RegExpExecArray | null;
+  while ((blockMatch = blockRegex.exec(content))) {
+    const selector = blockMatch[1].trim();
+    const blockContent = blockMatch[2];
+
+    const vars: CssVarMap = {};
+    const varRegex = /--([\w-]+)\s*:\s*([^;]+);/g;
+    let varMatch: RegExpExecArray | null;
+
+    while ((varMatch = varRegex.exec(blockContent))) {
+      const [, varName, varValue] = varMatch;
+      vars[`--${varName}`] = varValue.trim();
+    }
+
+    if (Object.keys(vars).length > 0) {
+      scopeVarMap[selector] = vars;
+    }
+  }
+
+  return scopeVarMap;
+}
 
 describe('Model Tests', () => {
-  afterEach(() => {
-    vi.resetAllMocks();
-    vi.restoreAllMocks();
-  });
+  describe('DOM color difference', () => {
+    it('dark mode colors should contrast', async () => {
+      const variables = extractCssVariables('./src/styles/_variables.scss');
 
-  beforeEach(() => {
-    global.fetch = vi.fn(() =>
-      Promise.resolve({
-        ok: true,
-        status: 200,
-        text: () => Promise.resolve(mockXml),
-      })
-    ) as any;
-  });
+      // these are for dark mode
+      const bg = variables?.[':root']?.['--color-card'];
+      const fg = variables?.[':root']?.['--color-text'];
 
-  it('loads and displays future events after button click', async () => {
-    const { default: App } = await import('../src/App');
-
-    render(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
-
-    const button = screen.getByTestId('load-todos');
-    fireEvent.click(button);
-
-    await waitFor(() => {
-      expect(screen.getByTestId('todo-list').textContent).not.toContain('No todos found');
+      if (bg && fg) {
+        // is the colors are too close together that's a fail
+        // since that means the text would be hard to see
+        expect(isColorDifferent(bg, fg)).toBe(true);
+      } else
+        expect(false).toBeTruthy();
     });
   });
 });

@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { setupStore, store } from '../src/store';
 import type { RootState } from '../src/store';
 import { STORAGE_KEY } from '../src/store/todos';
+import { isColorDifferent } from '../src/utility/color';
 
 describe('P2P Tests', () => {
   afterEach(() => {
@@ -77,6 +78,24 @@ describe('P2P Tests', () => {
       const state = store.getState();
 
       expect(state.todos.todos).toEqual([]);
+    });
+  });
+
+  describe('Utilities', () => {
+    describe('isColorDifferent', () => {
+      it('detects significantly different colors', () => {
+        expect(isColorDifferent('#ff0000', '#00ff00')).toBe(true);
+        expect(isColorDifferent('rgb(255, 0, 0)', '#00ff00')).toBe(true);
+      });
+
+      it('considers close colors as the same within tolerance', () => {
+        expect(isColorDifferent('#808080', '#808081')).toBe(false);
+        expect(isColorDifferent('rgb(128, 128, 128)', 'rgb(130, 128, 128)')).toBe(false);
+      });
+
+      it('detects colors outside the tolerance', () => {
+        expect(isColorDifferent('#808080', '#c0c0c0')).toBe(true);
+      });
     });
   });
 
