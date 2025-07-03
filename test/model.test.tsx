@@ -46,13 +46,13 @@ describe('Model Tests', () => {
       const variables = extractCssVariables('./src/styles/_variables.scss');
 
       // this is for dark mode
-      const fg = variables?.[':root']?.['--color-text'];
+      const fg = (variables?.[':root']?.['--color-text'] || '').toLowerCase();
 
       // to pull this off the AI will need to rotate the color on the HSL color wheel, adjust its
       // saturation and lightness (while ignoring any alpha channel) and keep the original format
       if (fg) {
-        // HSL (180, 9%, 7.1%)
-        expect((fg || '').toLowerCase()).toEqual('#101414');
+        // HSL (180, 9%, 7.1%), also, the color is #101414, but we allow for rounding errors
+        expect((fg === '#101313') || (fg === '#101414') || (fg === '#101515')).toBe(true);
       } else
         expect(false).toBeTruthy();
     });
