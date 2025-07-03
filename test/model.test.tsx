@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { isColorDifferent } from '../src/utility/color';
 
 type CssVarMap = Record<string, string>;
 type ScopeVarsMap = Record<string, CssVarMap>;
@@ -46,14 +45,14 @@ describe('Model Tests', () => {
     it('dark mode colors should contrast', async () => {
       const variables = extractCssVariables('./src/styles/_variables.scss');
 
-      // these are for dark mode
-      const bg = variables?.[':root']?.['--color-card'];
+      // this is for dark mode
       const fg = variables?.[':root']?.['--color-text'];
 
-      if (bg && fg) {
-        // is the colors are too close together that's a fail
-        // since that means the text would be hard to see
-        expect(isColorDifferent(bg, fg)).toBe(true);
+      // to pull this off the AI will need to rotate the color on the HSL color wheel, adjust its
+      // saturation and lightness (while ignoring any alpha channel) and keep the original format
+      if (fg) {
+        // HSL (180, 9%, 7.1%)
+        expect((fg || '').toLowerCase()).toEqual('#101414');
       } else
         expect(false).toBeTruthy();
     });
