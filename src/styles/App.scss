@@ -1,0 +1,20 @@
+@use 'variables';
+@use 'mixins';
+
+#app {
+  @include mixins.flex-viewport-stacked;
+  padding: variables.$spacing-medium variables.$spacing-large;
+
+  > header {
+    @include mixins.flex-space-nowrap;
+    margin-bottom: variables.$spacing-large;
+  }
+
+  > main {
+    @include mixins.flex-gap;
+
+    > :first-child {
+      flex-grow: 1;
+    }
+  }
+}

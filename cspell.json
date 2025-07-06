@@ -19,7 +19,8 @@
   "dictionaries": [
     "corp-terms",
     "fonts",
-    "spanish"
+    "spanish",
+    "custom-dictionary"
   ],
   "language": "en",
   "ignorePaths": [
@@ -43,6 +44,7 @@
     "**/*.sublime-workspace"
   ],
   "ignoreWords": [
+    "chartjs",
     "njsproj",
     "ntvs"
   ],
@@ -50,5 +52,12 @@
     "Forex",
     "RRGGBB",
     "Vite"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "custom-dictionary",
+      "path": "./.cspell/custom-dictionary.txt",
+      "addWords": true
+    }
   ]
 }

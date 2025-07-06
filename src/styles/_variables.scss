@@ -1,33 +1,29 @@
 // dark mode default colors
 :root {
-  --color-bg: #242424;
-  --color-card: #fff;
+  --color-background: #242424;
   --color-border: #7f8c8d;
   --color-danger: #c0392b;
   --color-hover: lighten(#2980b9, 10%);
   --color-primary: #2980b9;
   --color-secondary: #27ae60;
-  --color-surface: #2c3e50;
-  --color-text: #101414; // verify via https://colorpicker.dev/#242424
+  --color-text: #fff;
 }
 
 // light mode colors
 [data-theme="light"] {
-  --color-bg: #ecf0f1;
-  --color-card: #fff;
+  --color-background: #ecf0f1;
   --color-border: #95a5a6;
   --color-danger: #e74c3c;
   --color-hover: darken(#3498db, 10%);
   --color-primary: #3498db;
   --color-secondary: #2ecc71;
-  --color-surface: #ffffff;
   --color-text: #2c3e50;
 }
 
-// spacing
-$spacing-small: 8px;
-$spacing-medium: 16px;
-$spacing-large: 24px;
-
 // border
 $border-radius: 4px;
+
+// spacing
+$spacing-small: 0.5rem;
+$spacing-medium: 1rem;
+$spacing-large: 1.5rem;

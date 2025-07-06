@@ -1,0 +1,11 @@
+@use 'variables';
+@use 'mixins';
+
+#console {
+  background: black;
+  color: gray;
+  font-family: monospace, monospace; // a hack to prevent font size being reduced
+  min-height: 1em;
+  min-width: 2ch;
+  padding: 0.5em 1em;
+}

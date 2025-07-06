@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ModeIcon from '../assets/mode.svg';
 
 type ThemeMode = 'light' | 'dark';
 
@@ -11,7 +12,7 @@ const initTheme = (localStorage.getItem('theme') ?? defaultTheme) as ThemeMode;
 const ThemeToggle: React.FC = () => {
   const [theme, setTheme] = useState<ThemeMode>(initTheme);
 
-  // Load saved theme from localStorage on component mount
+  // load saved theme from localStorage on component mount
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
     if (savedTheme) {
@@ -19,7 +20,7 @@ const ThemeToggle: React.FC = () => {
     }
   }, []);
 
-  // Update document attribute and save to localStorage when theme changes
+  // update document attribute and save to localStorage when theme changes
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
@@ -30,8 +31,8 @@ const ThemeToggle: React.FC = () => {
   };
 
   return (
-    <button data-testid="theme-toggle" onClick={toggleTheme}>
-      Toggle to {theme === 'light' ? 'Dark' : 'Light'} Mode
+    <button id="theme-toggle" data-testid="theme-toggle" onClick={toggleTheme}>
+      <img src={ModeIcon} />
     </button>
   );
 };
