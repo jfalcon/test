@@ -1,6 +1,7 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import type { ChartData, ChartOptions } from 'chart.js';
+import '../styles/Chart.scss';
 
 import {
   BarElement,
@@ -27,13 +28,14 @@ interface ChartProps {
   options?: ChartOptions<'bar'>;
 }
 
-
 const Chart: React.FC<ChartProps> = ({ data, options }) => {
   // always have faster animation speeds
   const defaultOptions: ChartOptions<'bar'> = {
     animation: {
-      duration: 200, // in milliseconds
+      duration: 0, // in milliseconds
     },
+    maintainAspectRatio: false,
+    responsive: true,
     scales: {
       y: {
         beginAtZero: true,
@@ -42,7 +44,8 @@ const Chart: React.FC<ChartProps> = ({ data, options }) => {
     ...options,
   };
 
-  return <Bar data={data} options={defaultOptions} />;
+  return <div id="chart">This should be a chart.</div>;
+  // return <Bar id="chart" data={data} options={defaultOptions} />;
 };
 
 export default Chart;

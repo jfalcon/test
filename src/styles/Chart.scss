@@ -1,0 +1,5 @@
+@use 'variables';
+
+#chart {
+  padding: variables.$spacing-medium variables.$spacing-large;
+}

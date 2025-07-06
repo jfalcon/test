@@ -66,14 +66,19 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <div id="app">
-        <header>
+        <nav>
           <h1>Chart</h1>
-          <ThemeToggle />
-        </header>
-        <main>
-          <Chart data={priceData} />
-          <Console />
-        </main>
+        </nav>
+        <div>
+          <header>
+            <ThemeToggle />
+          </header>
+          <main>
+            <Chart data={priceData} />
+            <Console />
+          </main>
+          <footer>Footer</footer>
+        </div>
       </div>
     </Provider>
   );

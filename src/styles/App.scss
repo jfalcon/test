@@ -2,19 +2,48 @@
 @use 'mixins';
 
 #app {
-  @include mixins.flex-viewport-stacked;
-  padding: variables.$spacing-medium variables.$spacing-large;
+  @include mixins.flex-viewport-columns;
 
-  > header {
-    @include mixins.flex-space-nowrap;
-    margin-bottom: variables.$spacing-large;
+  > nav {
+    background-color: var(--color-navigation);
+    height: 100dvh;
+    padding: variables.$spacing-medium variables.$spacing-large;
+    max-width: 30dvw;
+    overflow-x: auto;
   }
 
-  > main {
-    @include mixins.flex-gap;
+  > div {
+    flex: 1;
 
-    > :first-child {
-      flex-grow: 1;
+    > header {
+      @include mixins.flex-nowrap-right;
+      height: calc(2rem + (#{variables.$spacing-large} * 2));
+      padding: variables.$spacing-medium variables.$spacing-large;
+    }
+
+    > footer {
+      @include mixins.flex-nowrap-left;
+      height: calc(1rem + (#{variables.$spacing-large} * 2));
+      padding: variables.$spacing-medium variables.$spacing-large;
+    }
+
+    > main {
+      // @include mixins.flex-gap;
+      display: flex;
+      flex-direction: row;
+
+      @include mixins.mobile-tablet {
+        flex-direction: column;
+      }
+
+      > * {
+        height: calc(100dvh - (3rem + (#{variables.$spacing-large} * 4)));
+        overflow: auto;
+      }
+
+      > :first-child {
+        flex: 1;
+      }
     }
   }
 }

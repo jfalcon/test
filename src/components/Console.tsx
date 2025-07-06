@@ -24,9 +24,9 @@ const Console: React.FC = () => {
   // no need to use a pre (preserve) tag since we control this
   // with styles and also ensure no font size reduction
   return (
-    <section id="console" data-testid="console">
+    <aside id="console" data-testid="console">
       {logs.map((log, i) => <div key={i}>{log}</div>)}
-    </section>
+    </aside>
   );
 };
 

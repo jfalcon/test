@@ -1,3 +1,11 @@
+@mixin button-reset {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -10,23 +18,26 @@
   gap: 1rem;
 }
 
-@mixin flex-space-nowrap {
+@mixin flex-nowrap-left {
   display: flex;
-  align-items: center;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
-@mixin flex-viewport-stacked {
+@mixin flex-nowrap-right {
   display: flex;
-  flex-direction: column;
-  height: 100vh;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
 }
 
-@mixin button-reset {
-  border: none;
-  background: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
+@mixin flex-viewport-columns {
+  display: flex;
+  flex-direction: row;
+  min-height: 100dvh;
+}
+
+@mixin mobile-tablet {
+  @media (max-width: 1023px) {
+    @content;
+  }
 }

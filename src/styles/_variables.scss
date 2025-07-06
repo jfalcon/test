@@ -1,9 +1,12 @@
 // dark mode default colors
 :root {
   --color-background: #242424;
+  --color-console-background: black;
+  --color-console-text: gray;
   --color-border: #7f8c8d;
   --color-danger: #c0392b;
   --color-hover: lighten(#2980b9, 10%);
+  --color-navigation: #3b3b3b;
   --color-primary: #2980b9;
   --color-secondary: #27ae60;
   --color-text: #fff;
@@ -12,9 +15,12 @@
 // light mode colors
 [data-theme="light"] {
   --color-background: #ecf0f1;
+  --color-console-background: #c1c1c1;
+  --color-console-text: black;
   --color-border: #95a5a6;
   --color-danger: #e74c3c;
   --color-hover: darken(#3498db, 10%);
+  --color-navigation: #dddad1;
   --color-primary: #3498db;
   --color-secondary: #2ecc71;
   --color-text: #2c3e50;
@@ -27,3 +33,8 @@ $border-radius: 4px;
 $spacing-small: 0.5rem;
 $spacing-medium: 1rem;
 $spacing-large: 1.5rem;
+
+// typography
+$font-size-header: 3.2rem;
+$line-height-header: 1.1;
+$line-height-text: 1.6;
