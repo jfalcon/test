@@ -33,7 +33,7 @@ const App: React.FC = () => {
 
   return (
     <Provider store={store}>
-      <div id="app">
+      <div id="app" data-testid="app">
         <nav>
           <h1>Chart</h1>
         </nav>

@@ -22,7 +22,8 @@ describe('P2P Tests', () => {
         </Provider>
       );
 
-      expect(screen.getByText('Todo List')).toBeInTheDocument();
+      expect(screen.getByText('Chart')).toBeInTheDocument();
+      expect(screen.getByText('Footer')).toBeInTheDocument();
     });
 
     it('renders all child components', async () => {
@@ -34,9 +35,10 @@ describe('P2P Tests', () => {
         </Provider>
       );
 
-      expect(screen.getByTestId('load-todos')).toBeInTheDocument();
-      expect(screen.getByTestId('todo-list')).toBeInTheDocument();
-      expect(screen.getByTestId('filter-buttons')).toBeInTheDocument();
+      expect(screen.getByTestId('app')).toBeInTheDocument();
+      expect(screen.getByTestId('chart')).toBeInTheDocument();
+      expect(screen.getByTestId('console')).toBeInTheDocument();
+      expect(screen.getByTestId('theme-toggle')).toBeInTheDocument();
     });
   })
 
