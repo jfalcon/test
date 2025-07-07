@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import Chart from './components/Chart';
 import Console from './components/Console';
-import ThemeToggle from './components/ThemeToggle';
+import Theme from './components/Theme';
 import { priceData as data } from '../test/fixtures/priceData';
 import './styles/App.scss';
 
@@ -39,7 +39,7 @@ const App: React.FC = () => {
         </nav>
         <div>
           <header>
-            <ThemeToggle />
+            <Theme />
           </header>
           <main>
             <Chart data={priceData} />

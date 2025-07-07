@@ -11,6 +11,7 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: variables.$font-size-text;
   font-weight: 400;
   line-height: variables.$line-height-text;
   margin: 0;

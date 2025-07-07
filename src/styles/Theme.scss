@@ -1,0 +1,8 @@
+@use 'variables';
+
+#theme {
+  > img {
+    height: variables.$font-size-text * variables.$line-height-text;
+    width: variables.$font-size-text * variables.$line-height-text;
+  }
+}

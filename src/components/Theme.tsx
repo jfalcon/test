@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ModeIcon from '../assets/mode.svg';
+import '../styles/Theme.scss';
 
 type ThemeMode = 'light' | 'dark';
 
@@ -9,7 +10,7 @@ const defaultTheme = (
 
 const initTheme = (localStorage.getItem('theme') ?? defaultTheme) as ThemeMode;
 
-const ThemeToggle: React.FC = () => {
+const Theme: React.FC = () => {
   const [theme, setTheme] = useState<ThemeMode>(initTheme);
 
   // load saved theme from localStorage on component mount
@@ -31,10 +32,10 @@ const ThemeToggle: React.FC = () => {
   };
 
   return (
-    <button id="theme-toggle" data-testid="theme-toggle" onClick={toggleTheme}>
+    <button id="theme" data-testid="theme" onClick={toggleTheme}>
       <img src={ModeIcon} />
     </button>
   );
 };
 
-export default ThemeToggle;
+export default Theme;

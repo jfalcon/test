@@ -38,7 +38,7 @@ describe('P2P Tests', () => {
       expect(screen.getByTestId('app')).toBeInTheDocument();
       expect(screen.getByTestId('chart')).toBeInTheDocument();
       expect(screen.getByTestId('console')).toBeInTheDocument();
-      expect(screen.getByTestId('theme-toggle')).toBeInTheDocument();
+      expect(screen.getByTestId('theme')).toBeInTheDocument();
     });
   })
 
@@ -138,8 +138,8 @@ describe('P2P Tests', () => {
         </Provider>
       );
 
-      const toggleButton = screen.getByTestId('theme-toggle');
-      fireEvent.click(toggleButton);
+      const themeButton = screen.getByTestId('theme');
+      fireEvent.click(themeButton);
 
       expect(window.localStorage.getItem('theme')).toBe('light');
     });
