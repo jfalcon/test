@@ -29,38 +29,6 @@ const App: React.FC = () => {
 
   useEffect(() => {
     console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-    console.log('Hello World!', 'Life is like a box of chocolates.');
   }, []);
 
   return (
