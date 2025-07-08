@@ -1,10 +1,9 @@
 @use 'variables';
 
-#chart {
+#candlestick {
   padding: variables.$spacing-medium variables.$spacing-large;
 
   > div {
-    max-width: 600px; // prevent infinite horizontal growth
     min-height: 0;    // prevent flexbox from blowing up chart.js
     min-width: 0;     // prevent flexbox from blowing up chart.js
     overflow: hidden;
