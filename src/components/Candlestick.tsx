@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react';
-import type { Timezone } from '../timezones';
 import type { ThemeMode } from '../components/Theme';
 import '../styles/Candlestick.scss';
 
@@ -31,7 +30,6 @@ type ChartOptions = {
 
 type ChartProps = {
   data: Candle[];
-  timezone?: Timezone;
 };
 
 function getThemeOptions(theme: ThemeMode): ChartOptions {

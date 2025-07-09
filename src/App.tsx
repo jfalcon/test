@@ -4,12 +4,12 @@ import { store } from './store';
 import Candlestick from './components/Candlestick';
 import Console from './components/Console';
 import Theme from './components/Theme';
-import { validData } from '../test/fixtures/ohlcData';
+import { pricedata } from '../test/fixtures/priceData';
 import { parseData } from './utility/data'
-import { NewYork } from './timezones';
+import { UTC } from './timezones';
 import './styles/App.scss';
 
-const data = parseData(validData, NewYork);
+const data = parseData(pricedata, UTC);
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -27,7 +27,7 @@ const App: React.FC = () => {
             <Theme />
           </header>
           <main>
-            <Candlestick data={data} timezone={NewYork} />
+            <Candlestick data={data} />
             <Console />
           </main>
           <footer>Footer</footer>
