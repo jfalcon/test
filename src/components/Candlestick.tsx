@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 import { Chart as ChartJS, TimeScale, LinearScale, Tooltip, Legend } from 'chart.js';
-import { CandlestickController, CandlestickElement } from 'chartjs-chart-financial';
 import type { ChartData, ChartOptions } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 import { parse } from 'date-fns';
 import { toDate } from 'date-fns-tz';
-import { UTC } from '../timezones';
+import { timezones } from '../timezones';
 import type { Timezone } from '../timezones';
+import { CandlestickController, CandlestickElement } from 'chartjs-chart-financial';
 import 'chartjs-adapter-date-fns';
 import '../styles/Candlestick.scss';
 
@@ -58,7 +58,7 @@ function parseData(data: string, timezone: Timezone): PriceData[] {
 
 const Candlestick: React.FC<ChartProps> = ({ data, label, timezone }) => {
   const l = (label || 'Candlestick Chart').trim();
-  const t: Timezone = timezone ?? UTC;
+  const t: Timezone = timezone ?? timezones.UTC as Timezone;
 
   const parsedData: PriceData[] = useMemo(() => {
     return Array.isArray(data) ? data : parseData(data, t);
