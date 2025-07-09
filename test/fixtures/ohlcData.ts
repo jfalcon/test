@@ -1,5 +1,5 @@
 // fake a CSV file import
-export const priceData = `
+export const validData = `
 2010.01.03,22:00,1.430100,1.430400,1.429800,1.430000,410
 2010.01.03,22:05,1.430100,1.430200,1.429800,1.429800,350
 2010.01.03,22:10,1.429900,1.430700,1.429900,1.430700,370
@@ -11,4 +11,4 @@ export const priceData = `
 2010.01.03,22:40,1.432400,1.432400,1.432100,1.432100,410
 `.trim();
 
-export default priceData;
+export default validData;

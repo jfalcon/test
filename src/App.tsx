@@ -4,12 +4,12 @@ import { store } from './store';
 import Candlestick from './components/Candlestick';
 import Console from './components/Console';
 import Theme from './components/Theme';
-import { priceData } from '../test/fixtures/priceData';
+import { validData } from '../test/fixtures/ohlcData';
 import { parseData } from './utility/data'
 import { NewYork } from './timezones';
 import './styles/App.scss';
 
-const data = parseData(priceData, NewYork);
+const data = parseData(validData, NewYork);
 
 const App: React.FC = () => {
   useEffect(() => {

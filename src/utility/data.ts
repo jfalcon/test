@@ -6,11 +6,12 @@ import { toDate } from 'date-fns-tz';
 /**
  * Parses CSV OHLC data.
  */
-export function parseData(data: string, timezone: Timezone): Candle[] {
-  return data
+export function parseData(data: string, timezone: Timezone, delimiter = ','): Candle[] {
+  return (data || '')
+    .trim()
     .split("\n")
     .map((line) => {
-      const [dateStr, timeStr, open, high, low, close, volume] = line.split(',');
+      const [dateStr, timeStr, open, high, low, close, volume] = line.split(delimiter);
       const localDate = parse(`${dateStr} ${timeStr}`, 'yyyy.MM.dd HH:mm', new Date());
       const date = toDate(localDate, { timeZone: timezone.name });
 
