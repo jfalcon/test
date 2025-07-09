@@ -4,6 +4,9 @@ import type { ChartData, ChartOptions } from 'chart.js';
 import { CandlestickController, CandlestickElement } from 'chartjs-chart-financial';
 import { Chart } from 'react-chartjs-2';
 import { parse } from 'date-fns';
+import { toDate } from 'date-fns-tz';
+import { timezones } from '../timezones';
+import type { Timezone } from '../timezones';
 import 'chartjs-adapter-date-fns';
 import '../styles/Candlestick.scss';
 
@@ -37,14 +40,16 @@ export interface PriceData {
 type ChartProps = {
   data: string | PriceData[];
   label?: string;
+  timezone?: Timezone;
 };
 
-function parseData(data: string): PriceData[] {
+function parseData(data: string, timezone: Timezone): PriceData[] {
   return data
     .split("\n")
     .map((line) => {
       const [dateStr, timeStr, open, high, low, close, volume] = line.split(',');
-      const date = parse(`${dateStr} ${timeStr}`, 'yyyy.MM.dd HH:mm', new Date());
+      const localDate = parse(`${dateStr} ${timeStr}`, 'yyyy.MM.dd HH:mm', new Date());
+      const date = toDate(localDate, { timeZone: timezone.name });
 
       return {
         date,
@@ -57,11 +62,12 @@ function parseData(data: string): PriceData[] {
     });
 }
 
-const Candlestick: React.FC<ChartProps> = ({ data, label }) => {
+const Candlestick: React.FC<ChartProps> = ({ data, label, timezone }) => {
   const l = (label || 'Candlestick Chart').trim();
+  const t: Timezone = timezone ?? timezones.UTC as Timezone;
 
   const parsedData: PriceData[] = useMemo(() => {
-    return Array.isArray(data) ? data : parseData(data);
+    return Array.isArray(data) ? data : parseData(data, t);
   }, []);
 
   const chartData: ChartData<'candlestick', Candle[], unknown> = {

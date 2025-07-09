@@ -44,6 +44,9 @@
     "**/*.sublime-workspace"
   ],
   "ignoreWords": [
+    "AKDT",
+    "EEST",
+    "NZST",
     "chartjs",
     "njsproj",
     "ntvs"
