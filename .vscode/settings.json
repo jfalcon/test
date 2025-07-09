@@ -135,5 +135,8 @@
     "**/*.xla*": true,
     "**/*.xls*": true,
     "**/*.zip": true
-  }
+  },
+  "cSpell.words": [
+    "OHLC"
+  ]
 }

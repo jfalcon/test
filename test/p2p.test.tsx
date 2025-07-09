@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { setupStore, store } from '../src/store';
 import type { RootState } from '../src/store';
@@ -13,28 +13,28 @@ describe('P2P Tests', () => {
   });
 
   beforeEach(() => {
-    vi.mock('chart.js', () => {
-      return {
-        Chart: class {
-          static register = vi.fn();
-        },
-        TimeScale: class {},
-        LinearScale: class {},
-        Tooltip: class {},
-        Legend: class {},
-        registerables: [],
-        defaults: {},
-      };
-    });
+    // vi.mock('chart.js', () => {
+    //   return {
+    //     Chart: class {
+    //       static register = vi.fn();
+    //     },
+    //     TimeScale: class {},
+    //     LinearScale: class {},
+    //     Tooltip: class {},
+    //     Legend: class {},
+    //     registerables: [],
+    //     defaults: {},
+    //   };
+    // });
 
-    vi.mock('react-chartjs-2', () => ({
-      Chart: () => <div>Mock Chart</div>,
-    }));
+    // vi.mock('react-chartjs-2', () => ({
+    //   Chart: () => <div>Mock Chart</div>,
+    // }));
 
-    vi.mock('chartjs-chart-financial', () => ({
-      CandlestickController: class {},
-      CandlestickElement: class {},
-    }));
+    // vi.mock('chartjs-chart-financial', () => ({
+    //   CandlestickController: class {},
+    //   CandlestickElement: class {},
+    // }));
   });
 
   describe('App Component', () => {
@@ -47,8 +47,10 @@ describe('P2P Tests', () => {
         </Provider>
       );
 
-      expect(screen.getByText('Chart')).toBeInTheDocument();
-      expect(screen.getByText('Footer')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('Chart')).toBeInTheDocument();
+        expect(screen.getByText('Footer')).toBeInTheDocument();
+      });
     });
 
     it('renders all child components', async () => {
@@ -60,9 +62,12 @@ describe('P2P Tests', () => {
         </Provider>
       );
 
-      expect(screen.getByTestId('app')).toBeInTheDocument();
-      expect(screen.getByTestId('console')).toBeInTheDocument();
-      expect(screen.getByTestId('theme')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByTestId('app')).toBeInTheDocument();
+        expect(screen.getByTestId('candlestick')).toBeInTheDocument();
+        expect(screen.getByTestId('console')).toBeInTheDocument();
+        expect(screen.getByTestId('theme')).toBeInTheDocument();
+      });
     });
   })
 
@@ -165,7 +170,9 @@ describe('P2P Tests', () => {
       const themeButton = screen.getByTestId('theme');
       fireEvent.click(themeButton);
 
-      expect(window.localStorage.getItem('theme')).toBe('light');
+      await waitFor(() => {
+        expect(window.localStorage.getItem('theme')).toBe('light');
+      });
     });
 
     it('remembers light theme preference', async () => {
@@ -180,7 +187,9 @@ describe('P2P Tests', () => {
         </Provider>
       );
 
-      expect(document.documentElement).toHaveAttribute('data-theme', 'light');
+      await waitFor(() => {
+        expect(document.documentElement).toHaveAttribute('data-theme', 'light');
+      });
     });
 
     it('remembers dark theme preference', async () => {
@@ -195,7 +204,9 @@ describe('P2P Tests', () => {
         </Provider>
       );
 
-      expect(document.documentElement).toHaveAttribute('data-theme', 'dark');
+      await waitFor(() => {
+        expect(document.documentElement).toHaveAttribute('data-theme', 'dark');
+      });
     });
   })
 })

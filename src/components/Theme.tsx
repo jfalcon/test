@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ModeIcon from '../assets/mode.svg';
 import '../styles/Theme.scss';
 
-type ThemeMode = 'light' | 'dark';
+export type ThemeMode = 'light' | 'dark';
 
 const defaultTheme = (
   window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches

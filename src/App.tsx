@@ -5,8 +5,11 @@ import Candlestick from './components/Candlestick';
 import Console from './components/Console';
 import Theme from './components/Theme';
 import { priceData } from '../test/fixtures/priceData';
+import { parseData } from './utility/data'
 import { NewYork } from './timezones';
 import './styles/App.scss';
+
+const data = parseData(priceData, NewYork);
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -24,7 +27,7 @@ const App: React.FC = () => {
             <Theme />
           </header>
           <main>
-            <Candlestick data={priceData} timezone={NewYork} />
+            <Candlestick data={data} timezone={NewYork} />
             <Console />
           </main>
           <footer>Footer</footer>
