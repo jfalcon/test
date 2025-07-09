@@ -12,6 +12,31 @@ describe('P2P Tests', () => {
     vi.resetModules(); // resets cached module imports between tests
   });
 
+  beforeEach(() => {
+    vi.mock('chart.js', () => {
+      return {
+        Chart: class {
+          static register = vi.fn();
+        },
+        TimeScale: class {},
+        LinearScale: class {},
+        Tooltip: class {},
+        Legend: class {},
+        registerables: [],
+        defaults: {},
+      };
+    });
+
+    vi.mock('react-chartjs-2', () => ({
+      Chart: () => <div>Mock Chart</div>,
+    }));
+
+    vi.mock('chartjs-chart-financial', () => ({
+      CandlestickController: class {},
+      CandlestickElement: class {},
+    }));
+  });
+
   describe('App Component', () => {
     it('renders without crashing', async () => {
       const { default: App } = await import('../src/App');
