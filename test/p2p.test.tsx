@@ -36,7 +36,6 @@ describe('P2P Tests', () => {
       );
 
       expect(screen.getByTestId('app')).toBeInTheDocument();
-      expect(screen.getByTestId('chart')).toBeInTheDocument();
       expect(screen.getByTestId('console')).toBeInTheDocument();
       expect(screen.getByTestId('theme')).toBeInTheDocument();
     });

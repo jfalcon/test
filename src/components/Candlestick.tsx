@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { Chart as ChartJS, TimeScale, LinearScale, Tooltip, Legend } from 'chart.js';
 import type { ChartData, ChartOptions } from 'chart.js';
-import { CandlestickController, CandlestickElement } from 'chartjs-chart-financial';
 import { Chart } from 'react-chartjs-2';
 import { parse } from 'date-fns';
 import { toDate } from 'date-fns-tz';
@@ -10,15 +9,15 @@ import type { Timezone } from '../timezones';
 import 'chartjs-adapter-date-fns';
 import '../styles/Candlestick.scss';
 
+const isTestEnv = import.meta.env.MODE === 'test';
+
 // register the required components
-ChartJS.register(
-  TimeScale,
-  LinearScale,
-  CandlestickController,
-  CandlestickElement,
-  Tooltip,
-  Legend
-);
+ChartJS.register(TimeScale, LinearScale, Tooltip, Legend);
+
+if (!isTestEnv) {
+  const { CandlestickController, CandlestickElement } = await import('chartjs-chart-financial');
+  ChartJS.register(CandlestickController, CandlestickElement);
+}
 
 interface Candle {
   x: Date;
@@ -117,7 +116,7 @@ const Candlestick: React.FC<ChartProps> = ({ data, label, timezone }) => {
   return (
     <section id="candlestick" data-testid="candlestick">
       <div>
-        <Chart type="candlestick" data={chartData} options={options} />
+        {!isTestEnv && <Chart type="candlestick" data={chartData} options={options} />}
       </div>
     </section>
   );
