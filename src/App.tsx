@@ -5,8 +5,7 @@ import Candlestick from './components/Candlestick';
 import Console from './components/Console';
 import Theme from './components/Theme';
 import { priceData } from '../test/fixtures/priceData';
-import { timezones } from './timezones';
-import type { Timezone } from './timezones';
+import { NewYork } from './timezones';
 import './styles/App.scss';
 
 const App: React.FC = () => {
@@ -25,10 +24,7 @@ const App: React.FC = () => {
             <Theme />
           </header>
           <main>
-            <Candlestick
-              data={priceData}
-              timezone={(timezones as { America: { NewYork: Timezone } }).America.NewYork}
-            />
+            <Candlestick data={priceData} timezone={NewYork} />
             <Console />
           </main>
           <footer>Footer</footer>

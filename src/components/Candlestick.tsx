@@ -4,7 +4,7 @@ import type { ChartData, ChartOptions } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 import { parse } from 'date-fns';
 import { toDate } from 'date-fns-tz';
-import { timezones } from '../timezones';
+import { UTC } from '../timezones';
 import type { Timezone } from '../timezones';
 import { CandlestickController, CandlestickElement } from 'chartjs-chart-financial';
 import 'chartjs-adapter-date-fns';
@@ -58,7 +58,7 @@ function parseData(data: string, timezone: Timezone): PriceData[] {
 
 const Candlestick: React.FC<ChartProps> = ({ data, label, timezone }) => {
   const l = (label || 'Candlestick Chart').trim();
-  const t: Timezone = timezone ?? timezones.UTC as Timezone;
+  const t: Timezone = timezone ?? UTC;
 
   const parsedData: PriceData[] = useMemo(() => {
     return Array.isArray(data) ? data : parseData(data, t);
