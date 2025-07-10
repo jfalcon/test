@@ -1,7 +1,6 @@
+import { MS_IN_MIN } from '../constants';
 import type { Candle } from '../components/Candlestick';
 import type { Timezone } from '../timezones';
-import { parse } from 'date-fns';
-import { toDate } from 'date-fns-tz';
 
 /**
  * Parses CSV OHLC data.
@@ -11,12 +10,16 @@ export function parseData(data: string, timezone: Timezone, delimiter = ','): Ca
     .trim()
     .split("\n")
     .map((line) => {
-      const [dateStr, timeStr, open, high, low, close, volume] = line.split(delimiter);
-      const localDate = parse(`${dateStr} ${timeStr}`, 'yyyy.MM.dd HH:mm', new Date());
-      const date = toDate(localDate, { timeZone: timezone.name });
+      const [dateStr = '', timeStr = '', open, high, low, close, volume] = line.split(delimiter);
+
+      // manually parse to avoid any local timezone shifting
+      const [year, month, day] = dateStr.trim().split('.').map(Number);
+      const [hour, minute] = timeStr.trim().split(':').map(Number);
+
+      const time = Date.UTC(year, month - 1, day, hour, minute) - (timezone.offset * MS_IN_MIN);
 
       return {
-        time: date.valueOf(),
+        time,
         open: parseFloat(open) || 0.0,
         high: parseFloat(high) || 0.0,
         low: parseFloat(low) || 0.0,
