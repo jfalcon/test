@@ -6,7 +6,7 @@ type ToggleProps = {
 
 const Toggle: React.FC<ToggleProps> = ({ onToggleSidebar }) => {
   return (
-    <button id="theme" data-testid="theme" onClick={onToggleSidebar}>
+    <button id="toggle" data-testid="toggle" onClick={onToggleSidebar}>
       Toggle
     </button>
   );
