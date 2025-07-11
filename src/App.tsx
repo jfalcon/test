@@ -22,7 +22,7 @@ const App: React.FC = () => {
 
   return (
     <Provider store={store}>
-      <div id="app" data-testid="app">
+      <div id="app" data-testid="app" className={isSidebarCollapsed ? 'close' : ''}>
         <nav>
           <h1>Chart</h1>
         </nav>
