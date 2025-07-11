@@ -1,12 +1,11 @@
 import React from 'react';
 
 type ToggleProps = {
-  onToggleSidebar: () => void;
 };
 
-const Toggle: React.FC<ToggleProps> = ({ onToggleSidebar }) => {
+const Toggle: React.FC<ToggleProps> = () => {
   return (
-    <button id="toggle" data-testid="toggle" onClick={onToggleSidebar}>
+    <button id="toggle" data-testid="toggle">
       Toggle
     </button>
   );
