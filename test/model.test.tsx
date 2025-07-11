@@ -1,25 +1,22 @@
-import { parseData } from '../src/utility/data';
-import { pricedata, utcTimestamps } from './fixtures/priceData';
-import { NewYork, UTC } from '../src/timezones';
-import { MS_IN_MIN } from '../src/constants';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { store } from '../src/store';
 
 describe('Model Tests', () => {
-  it('parseData parses New York times correctly', () => {
-    // ignore DST for now
-    const offset = NewYork.offset * MS_IN_MIN;
+  it('hiding sidebar should apply close class', async () => {
+    const { default: App } = await import('../src/App');
 
-    const candles = parseData(pricedata, NewYork).filter((c, x) => {
-      return c.time === utcTimestamps[x] - offset;
+    const container = render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+
+    const toggleButton = screen.getByTestId('toggle');
+    fireEvent.click(toggleButton);
+
+    await waitFor(() => {
+      expect(container.getByTestId('app').classList.contains("close")).toBeTruthy();
     });
-
-    expect(candles.length).toStrictEqual(utcTimestamps.length);
-  });
-
-  it('parseData parses UTC times correctly', () => {
-    const candles = parseData(pricedata, UTC).filter((c, x) => {
-      return c.time === utcTimestamps[x];
-    });
-
-    expect(candles.length).toStrictEqual(utcTimestamps.length);
   });
 });

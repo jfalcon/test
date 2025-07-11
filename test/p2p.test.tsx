@@ -3,6 +3,10 @@ import { Provider } from 'react-redux';
 import { setupStore, store } from '../src/store';
 import type { RootState } from '../src/store';
 import { STORAGE_KEY } from '../src/store/todos';
+import { parseData } from '../src/utility/data';
+import { pricedata, utcTimestamps } from './fixtures/priceData';
+import { NewYork, UTC } from '../src/timezones';
+import { MS_IN_MIN } from '../src/constants';
 import { isColorDifferent } from '../src/utility/color';
 
 describe('P2P Tests', () => {
@@ -10,31 +14,6 @@ describe('P2P Tests', () => {
     vi.resetAllMocks();
     vi.restoreAllMocks();
     vi.resetModules(); // resets cached module imports between tests
-  });
-
-  beforeEach(() => {
-    // vi.mock('chart.js', () => {
-    //   return {
-    //     Chart: class {
-    //       static register = vi.fn();
-    //     },
-    //     TimeScale: class {},
-    //     LinearScale: class {},
-    //     Tooltip: class {},
-    //     Legend: class {},
-    //     registerables: [],
-    //     defaults: {},
-    //   };
-    // });
-
-    // vi.mock('react-chartjs-2', () => ({
-    //   Chart: () => <div>Mock Chart</div>,
-    // }));
-
-    // vi.mock('chartjs-chart-financial', () => ({
-    //   CandlestickController: class {},
-    //   CandlestickElement: class {},
-    // }));
   });
 
   describe('App Component', () => {
@@ -126,6 +105,27 @@ describe('P2P Tests', () => {
 
       it('detects colors outside the tolerance', () => {
         expect(isColorDifferent('#808080', '#c0c0c0')).toBe(true);
+      });
+    });
+
+    describe('parseData', () => {
+      it('parses New York times correctly', () => {
+        // ignore DST for now
+        const offset = NewYork.offset * MS_IN_MIN;
+
+        const candles = parseData(pricedata, NewYork).filter((c, x) => {
+          return c.time === utcTimestamps[x] - offset;
+        });
+
+        expect(candles.length).toStrictEqual(utcTimestamps.length);
+      });
+
+      it('parses UTC times correctly', () => {
+        const candles = parseData(pricedata, UTC).filter((c, x) => {
+          return c.time === utcTimestamps[x];
+        });
+
+        expect(candles.length).toStrictEqual(utcTimestamps.length);
       });
     });
   });
