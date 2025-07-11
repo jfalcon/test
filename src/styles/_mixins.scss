@@ -36,6 +36,13 @@
   min-height: 100dvh;
 }
 
+@mixin grid-sidebar($sidebar-width, $transition-speed) {
+  display: grid;
+  grid-template-columns: $sidebar-width 1fr;
+  grid-template-rows: 100dvh;
+  transition: grid-template-columns $transition-speed ease;
+}
+
 @mixin mobile-tablet {
   @media (max-width: 1023px) {
     @content;

@@ -2,14 +2,44 @@
 @use 'mixins';
 
 #app {
-  @include mixins.flex-viewport-columns;
+  @include mixins.grid-sidebar(variables.$sidebar-width, variables.$sidebar-transition-speed);
+
+  &.close {
+    grid-template-columns: 0 1fr;
+
+    > nav {
+      transform: translateX(-100%);
+    }
+  }
 
   > nav {
     background-color: var(--color-navigation);
     height: 100dvh;
-    padding: variables.$spacing-medium variables.$spacing-large;
-    max-width: 30dvw;
+    left: 0;
     overflow-y: auto;
+    padding: variables.$spacing-medium variables.$spacing-large;
+    transition: transform variables.$sidebar-transition-speed ease;
+    top: 0;
+    width: variables.$sidebar-width;
+    z-index: 1000;
+
+    .content {
+      padding: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin: 1rem 0;
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    }
   }
 
   > div {
