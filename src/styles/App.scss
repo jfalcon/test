@@ -14,12 +14,11 @@
 
   > nav {
     background-color: var(--color-navigation);
-    height: 100dvh;
-    left: 0;
+    grid-area: sidebar;
+    min-height: 100dvh;
     overflow-y: auto;
     padding: variables.$spacing-medium variables.$spacing-large;
     transition: transform variables.$sidebar-transition-speed ease;
-    top: 0;
     width: variables.$sidebar-width;
     z-index: 1000;
 
@@ -42,38 +41,38 @@
     }
   }
 
-  > div {
-    flex: 1;
+  > header {
+    @include mixins.flex-nowrap-right;
+    grid-area: header;
+    // height: calc(2rem + (#{variables.$spacing-large} * 2));
+    padding: variables.$spacing-medium variables.$spacing-large;
+  }
 
-    > header {
-      @include mixins.flex-nowrap-right;
-      height: calc(2rem + (#{variables.$spacing-large} * 2));
-      padding: variables.$spacing-medium variables.$spacing-large;
-    }
+  > main {
+    // @include mixins.flex-gap;
+    // display: flex;
+    // flex-direction: row;
+    grid-area: main;
+    min-height: 0; // needed for grid 1fr row
 
-    > footer {
-      @include mixins.flex-nowrap-left;
-      height: calc(1rem + (#{variables.$spacing-large} * 2));
-      padding: variables.$spacing-medium variables.$spacing-large;
-    }
+    // @include mixins.mobile-tablet {
+    //   flex-direction: column;
+    // }
 
-    > main {
-      // @include mixins.flex-gap;
-      display: flex;
-      flex-direction: row;
+    // > * {
+    //   height: calc(100dvh - (3rem + (#{variables.$spacing-large} * 4)));
+    //   overflow: auto;
+    // }
 
-      @include mixins.mobile-tablet {
-        flex-direction: column;
-      }
+    // > :first-child {
+    //   flex: 1;
+    // }
+  }
 
-      > * {
-        height: calc(100dvh - (3rem + (#{variables.$spacing-large} * 4)));
-        overflow: auto;
-      }
-
-      > :first-child {
-        flex: 1;
-      }
-    }
+  > footer {
+    // @include mixins.flex-nowrap-left;
+    // height: calc(1rem + (#{variables.$spacing-large} * 2));
+    grid-area: footer;
+    padding: variables.$spacing-medium variables.$spacing-large;
   }
 }

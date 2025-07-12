@@ -7,6 +7,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body, #root {
+  margin: 0;
+  height: 100%;
+}
+
 body {
   background-color: var(--color-background);
   color: var(--color-text);
@@ -14,7 +19,6 @@ body {
   font-size: variables.$font-size-text;
   font-weight: 400;
   line-height: variables.$line-height-text;
-  margin: 0;
 }
 
 // css reset

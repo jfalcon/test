@@ -26,17 +26,15 @@ const App: React.FC = () => {
         <nav>
           <h1>Chart</h1>
         </nav>
-        <div>
-          <header>
-            <Toggle onToggleSidebar={toggleSidebar} />
-            <Theme />
-          </header>
-          <main>
-            <Candlestick data={data} />
-            <Console />
-          </main>
-          <footer>Footer</footer>
-        </div>
+        <header>
+          <Toggle onToggleSidebar={toggleSidebar} />
+          <Theme />
+        </header>
+        <main>
+          <Candlestick data={data} />
+          <Console />
+        </main>
+        <footer>Footer</footer>
       </div>
     </Provider>
   );

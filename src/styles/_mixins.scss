@@ -38,8 +38,14 @@
 
 @mixin grid-sidebar($sidebar-width, $transition-speed) {
   display: grid;
-  grid-template-columns: $sidebar-width 1fr;
-  grid-template-rows: 100dvh;
+  height: 100%;
+  grid-template-columns: $sidebar-width 1fr; // sidebar and content
+  grid-template-rows: auto 1fr auto; // header, main, footer
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer";
+  min-height: 100dvh;
   transition: grid-template-columns $transition-speed ease;
 }
 
