@@ -4,6 +4,7 @@
 #console {
   background-color: var(--color-console-background);
   color: var(--color-console-text);
+  flex: 1;
   font-family: monospace, monospace; // a hack to prevent font size being reduced
   min-height: 1em;
   min-width: 2ch;

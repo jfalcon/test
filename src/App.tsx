@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { store } from '@/store';
 import Candlestick from '@/components/Candlestick';
 import Console from '@/components/Console';
+import Panel from '@/components/Panel';
 import Theme from '@/components/Theme';
 import Toggle from '@/components/Toggle';
 import { pricedata } from '#/fixtures/priceData';
@@ -32,7 +33,10 @@ const App: React.FC = () => {
         </header>
         <main>
           <Candlestick data={data} />
-          <Console />
+          <aside>
+            <Panel />
+            <Console />
+          </aside>
         </main>
         <footer>Footer</footer>
       </div>

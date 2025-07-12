@@ -63,12 +63,15 @@
     }
 
     > * {
-      height: calc(100dvh - (3rem + (#{variables.$spacing-large} * 4)));
       overflow: auto;
     }
 
     > :first-child {
       flex: 1;
+    }
+
+    > aside {
+      @include mixins.flex-column;
     }
   }
 

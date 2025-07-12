@@ -30,9 +30,25 @@
   justify-content: flex-end;
 }
 
-@mixin flex-viewport-columns {
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row {
   display: flex;
   flex-direction: row;
+}
+
+@mixin flex-viewport-row {
+  display: flex;
+  flex-direction: row;
+  min-height: 100dvh;
+}
+
+@mixin flex-viewport-column {
+  display: flex;
+  flex-direction: column;
   min-height: 100dvh;
 }
 

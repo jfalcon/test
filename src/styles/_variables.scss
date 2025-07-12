@@ -1,33 +1,35 @@
-// dark mode default colors
-:root {
-  --color-background: #242424;
-  --color-console-background: black;
-  --color-console-text: gray;
-  --color-border: #7f8c8d;
-  --color-danger: #c0392b;
-  --color-hover: lighten(#2980b9, 10%);
-  --color-navigation: #3b3b3b;
-  --color-primary: #2980b9;
-  --color-secondary: #27ae60;
-  --color-text: #fff;
-}
-
-// light mode colors
-[data-theme="light"] {
-  --color-background: #ecf0f1;
-  --color-console-background: #c1c1c1;
-  --color-console-text: black;
-  --color-border: #95a5a6;
-  --color-danger: #e74c3c;
-  --color-hover: darken(#3498db, 10%);
-  --color-navigation: #dddad1;
-  --color-primary: #3498db;
-  --color-secondary: #2ecc71;
-  --color-text: #2c3e50;
-}
+@use 'sass:color';
 
 // border
 $border-radius: 4px;
+
+// colors for dark mode
+$color-dark-background: #242424;
+$color-dark-console-background: black;
+$color-dark-console-text: gray;
+$color-dark-border: #7f8c8d;
+$color-dark-danger: #c0392b;
+$color-dark-hover: color.adjust(#2980b9, $lightness: 10%);
+$color-dark-navigation: #3b3b3b;
+$color-dark-panel-background: color.adjust(#242424, $lightness: 30%);
+$color-dark-panel-text: black;
+$color-dark-primary: #2980b9;
+$color-dark-secondary: #27ae60;
+$color-dark-text: #fff;
+
+// colors for light mode
+$color-light-background: #ecf0f1;
+$color-light-console-background: #c1c1c1;
+$color-light-console-text: black;
+$color-light-border: #95a5a6;
+$color-light-danger: #e74c3c;
+$color-light-hover: color.adjust(#3498db, $lightness: -10%);
+$color-light-navigation: #dddad1;
+$color-light-panel-background: color.adjust(#ecf0f1, $lightness: -10%);
+$color-light-panel-text: black;
+$color-light-primary: #3498db;
+$color-light-secondary: #2ecc71;
+$color-light-text: #2c3e50;
 
 // sidebar
 $sidebar-collapsed-width: 0;
@@ -44,3 +46,35 @@ $font-size-header: 3.2rem;
 $font-size-text: 12pt;
 $line-height-header: 1.1;
 $line-height-text: 1.6;
+
+// dark mode variables
+:root {
+  --color-background: #{$color-dark-background};
+  --color-console-background: #{$color-dark-console-background};
+  --color-console-text: #{$color-dark-console-text};
+  --color-border: #{$color-dark-border};
+  --color-danger: #{$color-dark-danger};
+  --color-hover: #{$color-dark-hover};
+  --color-navigation: #{$color-dark-navigation};
+  --color-panel-background: #{$color-dark-panel-background};
+  --color-panel-text: #{$color-dark-panel-text};
+  --color-primary: #{$color-dark-primary};
+  --color-secondary: #{$color-dark-secondary};
+  --color-text: #{$color-dark-text};
+}
+
+// light mode variables
+[data-theme="light"] {
+  --color-background: #{$color-light-background};
+  --color-console-background: #{$color-light-console-background};
+  --color-console-text: #{$color-light-console-text};
+  --color-border: #{$color-light-border};
+  --color-danger: #{$color-light-danger};
+  --color-hover: #{$color-light-hover};
+  --color-navigation: #{$color-light-navigation};
+  --color-panel-background: #{$color-light-panel-background};
+  --color-panel-text: #{$color-light-panel-text};
+  --color-primary: #{$color-light-primary};
+  --color-secondary: #{$color-light-secondary};
+  --color-text: #{$color-light-text};
+}
