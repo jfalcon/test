@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import type { ThemeMode } from '@/components/Theme';
-import { EMA } from 'technicalindicators';
+import { EMA, TrueRange } from 'technicalindicators';
 import { setTrueRange } from '@/store/meta';
 import type { AppDispatch } from '@/store';
 import '@/styles/Candlestick.scss';
@@ -181,7 +181,19 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
     });
 
     emaSeries.setData(emaData);
-    dispatch(setTrueRange(42));
+
+    const highs = data.map(d => d.high);
+    const lows = data.map(d => d.low);
+    const closes = data.map(d => d.close);
+
+    // compute True Ranges
+    const trueRanges = TrueRange.calculate({
+      high: highs,
+      low: lows,
+      close: closes,
+    });
+
+    dispatch(setTrueRange(trueRanges?.at(-1) ?? null));
 
     chart.priceScale('right').applyOptions({
       scaleMargins: {
