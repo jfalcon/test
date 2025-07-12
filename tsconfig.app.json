@@ -7,7 +7,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-    /* Bundler mode */
+    // bundler mode
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
@@ -15,14 +15,21 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Linting */
+    // linting
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "types": ["node", "jest", "@testing-library/jest-dom", "vitest/globals"]
+    "types": ["node", "jest", "@testing-library/jest-dom", "vitest/globals"],
+
+    // paths
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "#/*": ["test/*"]
+    }
   },
   "include": ["src", "test"]
 }

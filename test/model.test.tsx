@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from '../src/store';
+import { store } from '@/store';
 
 describe('Model Tests', () => {
   it('hiding sidebar should apply close class', async () => {

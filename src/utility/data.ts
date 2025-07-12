@@ -1,6 +1,6 @@
-import { MS_IN_MIN } from '../constants';
-import type { Candle } from '../components/Candlestick';
-import type { Timezone } from '../timezones';
+import { MS_IN_MIN } from '@/constants';
+import type { Candle } from '@/components/Candlestick';
+import type { Timezone } from '@/timezones';
 
 /**
  * Parses CSV OHLC data.

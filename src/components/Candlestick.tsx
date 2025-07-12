@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react';
-import type { ThemeMode } from '../components/Theme';
+import type { ThemeMode } from '@/components/Theme';
 import { EMA } from 'technicalindicators';
-import '../styles/Candlestick.scss';
+import '@/styles/Candlestick.scss';
 
 import {
   CandlestickSeries,

@@ -1,13 +1,13 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { setupStore, store } from '../src/store';
-import type { RootState } from '../src/store';
-import { STORAGE_KEY } from '../src/store/todos';
-import { parseData } from '../src/utility/data';
-import { pricedata, utcTimestamps } from './fixtures/priceData';
-import { NewYork, UTC } from '../src/timezones';
-import { MS_IN_MIN } from '../src/constants';
-import { isColorDifferent } from '../src/utility/color';
+import { setupStore, store } from '@/store';
+import type { RootState } from '@/store';
+import { STORAGE_KEY } from '@/store/todos';
+import { parseData } from '@/utility/data';
+import { pricedata, utcTimestamps } from '#/fixtures/priceData';
+import { NewYork, UTC } from '@/timezones';
+import { MS_IN_MIN } from '@/constants';
+import { isColorDifferent } from '@/utility/color';
 
 describe('P2P Tests', () => {
   afterEach(() => {
