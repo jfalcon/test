@@ -16,7 +16,7 @@ describe('Model Tests', () => {
       const panel = screen.getByTestId('panel');
       const text = (panel.innerHTML || '').trim().toLowerCase();
 
-      expect(text !== 'True Range:').toBeTruthy();
+      expect(text !== 'true range:').toBeTruthy();
     });
   });
 });

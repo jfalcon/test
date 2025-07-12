@@ -4,7 +4,7 @@ import '@/styles/Panel.scss';
 const Panel: React.FC = () => {
   return (
     <section id="panel" data-testid="panel">
-      Howdy
+      True Range:
     </section>
   );
 };
