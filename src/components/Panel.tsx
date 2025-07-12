@@ -1,7 +1,7 @@
 import React from 'react';
 import '@/styles/Panel.scss';
 
-const Console: React.FC = () => {
+const Panel: React.FC = () => {
   return (
     <section id="panel" data-testid="panel">
       Howdy
@@ -9,4 +9,4 @@ const Console: React.FC = () => {
   );
 };
 
-export default Console;
+export default Panel;

@@ -45,6 +45,7 @@ describe('P2P Tests', () => {
         expect(screen.getByTestId('app')).toBeInTheDocument();
         expect(screen.getByTestId('candlestick')).toBeInTheDocument();
         expect(screen.getByTestId('console')).toBeInTheDocument();
+        expect(screen.getByTestId('panel')).toBeInTheDocument();
         expect(screen.getByTestId('theme')).toBeInTheDocument();
       });
     });
