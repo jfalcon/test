@@ -56,6 +56,9 @@ describe('P2P Tests', () => {
 
     it("loads todos from localStorage", () => {
       const fakeState: RootState = {
+        meta: {
+          trueRange: null,
+        },
         todos: {
           todos: [{
             id: 0,
@@ -168,10 +171,10 @@ describe('P2P Tests', () => {
         </Provider>
       );
 
-      const themeButton = screen.getByTestId('theme');
-      fireEvent.click(themeButton);
-
       await waitFor(() => {
+        const themeButton = screen.getByTestId('theme');
+        fireEvent.click(themeButton);
+
         expect(window.localStorage.getItem('theme')).toBe('light');
       });
     });

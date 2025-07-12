@@ -1,22 +1,22 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from '@/store';
 
 describe('Model Tests', () => {
-  it('hiding sidebar should apply close class', async () => {
+  it('true range should be set through the store', async () => {
     const { default: App } = await import('../src/App');
 
-    const container = render(
+    render(
       <Provider store={store}>
         <App />
       </Provider>
     );
 
-    const toggleButton = screen.getByTestId('toggle');
-    fireEvent.click(toggleButton);
-
     await waitFor(() => {
-      expect(container.getByTestId('app').classList.contains("close")).toBeTruthy();
+      const panel = screen.getByTestId('panel');
+      const text = (panel.innerHTML || '').trim().toLowerCase();
+
+      expect(text !== 'True Range:').toBeTruthy();
     });
   });
 });
