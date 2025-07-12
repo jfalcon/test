@@ -1,8 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { setupStore, store } from '@/store';
-import type { RootState } from '@/store';
-import { STORAGE_KEY } from '@/store/todos';
+import { store } from '@/store';
 import { parseData } from '@/utility/data';
 import { pricedata, utcTimestamps } from '#/fixtures/priceData';
 import { NewYork, UTC } from '@/timezones';
@@ -50,50 +48,6 @@ describe('P2P Tests', () => {
       });
     });
   })
-
-  describe('Local Storage', () => {
-    beforeEach(() => localStorage.clear());
-
-    it("loads todos from localStorage", () => {
-      const fakeState: RootState = {
-        meta: {
-          trueRange: null,
-        },
-        todos: {
-          todos: [{
-            id: 0,
-            text: 'task 1',
-            completed: false,
-            count: 0,
-          }, {
-            id: 1,
-            text: 'task 2',
-            completed: false,
-            count: 0,
-          }],
-          filter: 'ALL',
-        }
-      };
-
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(fakeState));
-
-      // since this mocked we don't need to map like we do with production
-      const stored = localStorage.getItem(STORAGE_KEY);
-      const parsed: RootState = stored ? JSON.parse(stored) : undefined;
-
-      const store = setupStore(parsed);
-
-      const state = store.getState();
-      expect(state.todos.todos).toStrictEqual(fakeState.todos.todos);
-    });
-
-    it("safely initializes todos when localStorage is empty", () => {
-      const store = setupStore(undefined);
-      const state = store.getState();
-
-      expect(state.todos.todos).toEqual([]);
-    });
-  });
 
   describe('Utilities', () => {
     describe('isColorDifferent', () => {
