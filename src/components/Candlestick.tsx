@@ -1,6 +1,9 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import type { ThemeMode } from '@/components/Theme';
 import { EMA } from 'technicalindicators';
+import { setTrueRange } from '@/store/meta';
+import type { AppDispatch } from '@/store';
 import '@/styles/Candlestick.scss';
 
 import {
@@ -84,6 +87,7 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
   const candlestickSeriesRef = useRef<ReturnType<IChartApi['addSeries']> | null>(null);
   const volumeSeriesRef = useRef<ReturnType<IChartApi['addSeries']> | null>(null);
 
+  const dispatch = useDispatch<AppDispatch>();
   const [theme, setTheme] = useState<ThemeMode>('dark');
 
   const emaData = useMemo(() => {
@@ -177,6 +181,7 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
     });
 
     emaSeries.setData(emaData);
+    dispatch(setTrueRange(42));
 
     chart.priceScale('right').applyOptions({
       scaleMargins: {
