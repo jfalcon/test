@@ -1,11 +1,13 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import type { ThemeMode } from '../components/Theme';
+import { EMA } from 'technicalindicators';
 import '../styles/Candlestick.scss';
 
 import {
   CandlestickSeries,
   createChart,
   HistogramSeries,
+  LineSeries,
   type IChartApi,
   type CandlestickData,
   type HistogramData,
@@ -84,6 +86,19 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
 
   const [theme, setTheme] = useState<ThemeMode>('dark');
 
+  const emaData = useMemo(() => {
+    if (!data || data.length < 13) return [];
+
+    const closes = data.map(c => c.close);
+    const period = 13;
+    const ema = EMA.calculate({ period, values: closes });
+
+    return ema.map((value, i) => ({
+      time: data[i + period - 1].time as UTCTimestamp,
+      value,
+    }));
+  }, [data]);
+
   useEffect(() => {
     const updateTheme = () => {
       const t =
@@ -155,6 +170,13 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
       priceFormat: { type: 'volume' },
       priceScaleId: 'volume',
     });
+
+    const emaSeries = chart.addSeries(LineSeries, {
+      color: 'orange',
+      lineWidth: 2,
+    });
+
+    emaSeries.setData(emaData);
 
     chart.priceScale('right').applyOptions({
       scaleMargins: {
