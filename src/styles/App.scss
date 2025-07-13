@@ -46,6 +46,7 @@
 
   > header {
     @include mixins.flex-nowrap-right;
+    gap: variables.$spacing-medium;
     grid-area: header;
     min-height: 0; // prevent grid collapse
     padding: variables.$spacing-medium variables.$spacing-large;

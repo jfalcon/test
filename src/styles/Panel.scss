@@ -8,7 +8,47 @@
   flex-direction: column;
   gap: variables.$spacing-medium;
   min-height: 1em;
-  padding: 0 variables.$spacing-large;
+  padding: variables.$spacing-medium variables.$spacing-large;
+
+  .inputs {
+    display: grid;
+    grid-template-columns: 1fr 12ch 1fr 12ch 1fr 12ch;
+    gap: variables.$spacing-medium;
+    margin: 0 auto;
+    width: 80%;
+
+    > * {
+      line-height: 2em;
+      height: 2em;
+
+      &:nth-child(odd) {
+        text-align: right;
+
+        &::after {
+          content: ":";
+        }
+      }
+
+      &:nth-child(even) {
+        background-color: var(--color-panel-input-background);
+        color: var(--color-panel-input-text);
+      }
+    }
+
+    data {
+      padding: 0 variables.$spacing-small;
+    }
+
+    input {
+      background-color: var(--color-panel-input-background);
+      border: none;
+      color: var(--color-panel-input-text);
+      height: 2em;
+      line-height: 2em;
+      padding: 0 variables.$spacing-small;
+      width: 12ch;
+    }
+  }
 
   .panes {
     @include mixins.flex-gap;

@@ -8,5 +8,5 @@
   font-family: monospace, monospace; // a hack to prevent font size being reduced
   min-height: 1em;
   min-width: 2ch;
-  padding: 0.5em 1em;
+  padding: variables.$spacing-medium variables.$spacing-large;
 }

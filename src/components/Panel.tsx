@@ -13,7 +13,20 @@ const Panel: React.FC<PanelProps> = () => {
 
   return (
     <section id="panel" data-testid="panel">
-      <div>True Range: {trueRange && trueRange.toFixed(DIGITS)}</div>
+      <div className="inputs">
+        <div>1</div>
+        <div><input type="text" value={0.123456} /></div>
+        <div>3</div>
+        <div><input type="text" value={0.123456} /></div>
+        <div>5</div>
+        <div><input type="text" value={0.123456} /></div>
+        <div>True Range</div>
+        <div><data value="0">{trueRange && trueRange.toFixed(DIGITS)}</data></div>
+        <div>Balance</div>
+        <div><data value="42">42.00</data></div>
+        <div>11</div>
+        <div><data value="0">0.00</data></div>
+      </div>
       <div className="panes">
         <div>
           <table>
@@ -138,7 +151,6 @@ const Panel: React.FC<PanelProps> = () => {
           </table>
         </div>
       </div>
-      <div>Balance: 42</div>
     </section>
   );
 };
