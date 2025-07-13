@@ -1,8 +1,6 @@
 @use 'variables';
 
 #candlestick {
-  padding: 0 variables.$spacing-large;
-
   > div {
     min-height: 0;    // prevent flexbox from blowing up chart.js
     min-width: 0;     // prevent flexbox from blowing up chart.js

@@ -4,6 +4,17 @@
 #panel {
   background-color: var(--color-panel-background);
   color: var(--color-panel-text);
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-medium;
   min-height: 1em;
-  padding: 0.5em 1em;
+  padding: 0 variables.$spacing-large;
+
+  .panes {
+    @include mixins.flex-gap;
+
+    > * {
+      flex: 1;
+    }
+  }
 }

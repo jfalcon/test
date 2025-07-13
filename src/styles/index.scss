@@ -64,3 +64,55 @@ button {
     outline: 4px auto -webkit-focus-ring-color;
   }
 }
+
+table {
+  border-collapse: collapse;
+
+  th, td {
+    padding: variables.$spacing-small variables.$spacing-medium;
+    text-align: left;
+  }
+
+  thead {
+    // primary header row
+    tr:nth-child(1) th {
+      background-color: var(--color-table-header-1-background);
+      color: var(--color-table-header-1-text);
+      font-weight: bold;
+    }
+
+    // secondary header rows
+    tr th {
+      background-color: var(--color-table-header-2-background);
+      color: var(--color-table-header-2-text);
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: var(--color-table-cell-even-background);
+        color: var(--color-table-cell-even-text);
+      }
+
+      &:nth-child(odd) {
+        background-color: var(--color-table-cell-odd-background);
+        color: var(--color-table-cell-odd-text);
+      }
+
+      &:hover {
+        background-color: var(--color-table-cell-hover-background);
+        color: var(--color-table-cell-hover-text);
+        transition: background-color 0.3s ease;
+      }
+    }
+  }
+
+  tfoot {
+    td {
+      background-color: var(--color-table-footer-background);
+      color: var(--color-table-footer-text);
+      font-weight: bold;
+    }
+  }
+}

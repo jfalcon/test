@@ -15,6 +15,18 @@ $color-dark-panel-background: color.adjust(#242424, $lightness: 30%);
 $color-dark-panel-text: black;
 $color-dark-primary: #2980b9;
 $color-dark-secondary: #27ae60;
+$color-dark-table-cell-even-background: #f2f2f2;
+$color-dark-table-cell-even-text: $color-dark-panel-text;
+$color-dark-table-cell-hover-background: #e0e0e0;
+$color-dark-table-cell-hover-text: $color-dark-panel-text;
+$color-dark-table-cell-odd-background: white;
+$color-dark-table-cell-odd-text: $color-dark-panel-text;
+$color-dark-table-footer-background: #333;
+$color-dark-table-footer-text: white;
+$color-dark-table-header-1-background: #4caf50;
+$color-dark-table-header-1-text: white;
+$color-dark-table-header-2-background: #66bb6a;
+$color-dark-table-header-2-text: white;
 $color-dark-text: #fff;
 
 // colors for light mode
@@ -29,6 +41,18 @@ $color-light-panel-background: color.adjust(#ecf0f1, $lightness: -10%);
 $color-light-panel-text: black;
 $color-light-primary: #3498db;
 $color-light-secondary: #2ecc71;
+$color-light-table-cell-even-background: #f2f2f2;
+$color-light-table-cell-even-text: $color-dark-panel-text;
+$color-light-table-cell-hover-background: #e0e0e0;
+$color-light-table-cell-hover-text: $color-dark-panel-text;
+$color-light-table-cell-odd-background: white;
+$color-light-table-cell-odd-text: $color-dark-panel-text;
+$color-light-table-footer-background: #333;
+$color-light-table-footer-text: #333;
+$color-light-table-header-1-background: #4caf50;
+$color-light-table-header-1-text: white;
+$color-light-table-header-2-background: #66bb6a;
+$color-light-table-header-2-text: white;
 $color-light-text: #2c3e50;
 
 // sidebar
@@ -60,6 +84,18 @@ $line-height-text: 1.6;
   --color-panel-text: #{$color-dark-panel-text};
   --color-primary: #{$color-dark-primary};
   --color-secondary: #{$color-dark-secondary};
+  --color-table-cell-even-background: #{$color-dark-table-cell-even-background};
+  --color-table-cell-even-text: #{$color-dark-table-cell-even-text};
+  --color-table-cell-hover-background: #{$color-dark-table-cell-hover-background};
+  --color-table-cell-hover-text: #{$color-dark-table-cell-hover-text};
+  --color-table-cell-odd-background: #{$color-dark-table-cell-odd-background};
+  --color-table-cell-odd-text: #{$color-dark-table-cell-odd-text};
+  --color-table-footer-background: #{$color-dark-table-footer-background};
+  --color-table-footer-text: #{$color-dark-table-footer-text};
+  --color-table-header-1-background: #{$color-dark-table-header-1-background};
+  --color-table-header-1-text: #{$color-dark-table-header-1-text};
+  --color-table-header-2-background: #{$color-dark-table-header-2-background};
+  --color-table-header-2-text: #{$color-dark-table-header-2-text};
   --color-text: #{$color-dark-text};
 }
 
@@ -76,5 +112,17 @@ $line-height-text: 1.6;
   --color-panel-text: #{$color-light-panel-text};
   --color-primary: #{$color-light-primary};
   --color-secondary: #{$color-light-secondary};
+  --color-table-cell-even-background: #{$color-light-table-cell-even-background};
+  --color-table-cell-even-text: #{$color-light-table-cell-even-text};
+  --color-table-cell-hover-background: #{$color-light-table-cell-hover-background};
+  --color-table-cell-hover-text: #{$color-light-table-cell-hover-text};
+  --color-table-cell-odd-background: #{$color-light-table-cell-odd-background};
+  --color-table-cell-odd-text: #{$color-light-table-cell-odd-text};
+  --color-table-footer-background: #{$color-light-table-footer-background};
+  --color-table-footer-text: #{$color-light-table-footer-text};
+  --color-table-header-1-background: #{$color-light-table-header-1-background};
+  --color-table-header-1-text: #{$color-light-table-header-1-text};
+  --color-table-header-2-background: #{$color-light-table-header-2-background};
+  --color-table-header-2-text: #{$color-light-table-header-2-text};
   --color-text: #{$color-light-text};
 }
