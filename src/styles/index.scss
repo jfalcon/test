@@ -29,6 +29,12 @@ body {
   padding: 0;
 }
 
+// default selection text
+*::selection {
+  background-color: var(--color-selection-background);
+  color: var(--color-selection-text);
+}
+
 a {
   font-weight: 500;
   color: var(--color-primary);
