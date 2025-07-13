@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { DIGITS } from '@/constants';
 import type { RootState } from '@/store';
@@ -8,7 +8,6 @@ type PanelProps = {
 };
 
 const Panel: React.FC<PanelProps> = () => {
-  const [useLots, setUseLots] = useState(false);
   const trueRange = useSelector((state: RootState) => state.meta.trueRange);
 
   return (
@@ -32,13 +31,14 @@ const Panel: React.FC<PanelProps> = () => {
           <table className="long">
             <thead>
               <tr>
-                <th colSpan={4}>Long Positions</th>
+                <th colSpan={5}>Long Positions</th>
               </tr>
               <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
+                <th>Units</th>
+                <th>Lots</th>
+                <th>Keep</th>
+                <th>Profit</th>
+                <th>Apply</th>
               </tr>
             </thead>
             <tbody>
@@ -47,20 +47,10 @@ const Panel: React.FC<PanelProps> = () => {
                 <td>Data</td>
                 <td>Data</td>
                 <td>Data</td>
-              </tr>
-              <tr>
-                <td>Data</td>
-                <td>Data</td>
-                <td>Data</td>
                 <td>Data</td>
               </tr>
               <tr>
                 <td>Data</td>
-                <td>Data</td>
-                <td>Data</td>
-                <td>Data</td>
-              </tr>
-              <tr>
                 <td>Data</td>
                 <td>Data</td>
                 <td>Data</td>
@@ -71,8 +61,24 @@ const Panel: React.FC<PanelProps> = () => {
                 <td>Data</td>
                 <td>Data</td>
                 <td>Data</td>
+                <td>Data</td>
               </tr>
               <tr>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+              </tr>
+              <tr>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+              </tr>
+              <tr>
+                <td>Data</td>
                 <td>Data</td>
                 <td>Data</td>
                 <td>Data</td>
@@ -81,6 +87,7 @@ const Panel: React.FC<PanelProps> = () => {
             </tbody>
             <tfoot>
               <tr>
+                <td>Totals</td>
                 <td>Totals</td>
                 <td>Totals</td>
                 <td>Totals</td>
@@ -93,13 +100,14 @@ const Panel: React.FC<PanelProps> = () => {
           <table className="short">
             <thead>
               <tr>
-                <th colSpan={4}>Short Positions</th>
+                <th colSpan={5}>Short Positions</th>
               </tr>
               <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
+                <th>Units</th>
+                <th>Lots</th>
+                <th>Keep</th>
+                <th>Profit</th>
+                <th>Apply</th>
               </tr>
             </thead>
             <tbody>
@@ -108,20 +116,10 @@ const Panel: React.FC<PanelProps> = () => {
                 <td>Data</td>
                 <td>Data</td>
                 <td>Data</td>
-              </tr>
-              <tr>
-                <td>Data</td>
-                <td>Data</td>
-                <td>Data</td>
                 <td>Data</td>
               </tr>
               <tr>
                 <td>Data</td>
-                <td>Data</td>
-                <td>Data</td>
-                <td>Data</td>
-              </tr>
-              <tr>
                 <td>Data</td>
                 <td>Data</td>
                 <td>Data</td>
@@ -132,8 +130,24 @@ const Panel: React.FC<PanelProps> = () => {
                 <td>Data</td>
                 <td>Data</td>
                 <td>Data</td>
+                <td>Data</td>
               </tr>
               <tr>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+              </tr>
+              <tr>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+              </tr>
+              <tr>
+                <td>Data</td>
                 <td>Data</td>
                 <td>Data</td>
                 <td>Data</td>
@@ -142,6 +156,7 @@ const Panel: React.FC<PanelProps> = () => {
             </tbody>
             <tfoot>
               <tr>
+                <td>Totals</td>
                 <td>Totals</td>
                 <td>Totals</td>
                 <td>Totals</td>
