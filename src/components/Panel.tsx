@@ -29,10 +29,10 @@ const Panel: React.FC<PanelProps> = () => {
       </div>
       <div className="panes">
         <div>
-          <table>
+          <table className="long">
             <thead>
               <tr>
-                <th colSpan={4}>Main Header</th>
+                <th colSpan={4}>Long Positions</th>
               </tr>
               <tr>
                 <th>Column 1</th>
@@ -90,10 +90,10 @@ const Panel: React.FC<PanelProps> = () => {
           </table>
         </div>
         <div>
-          <table>
+          <table className="short">
             <thead>
               <tr>
-                <th colSpan={4}>Main Header</th>
+                <th colSpan={4}>Short Positions</th>
               </tr>
               <tr>
                 <th>Column 1</th>

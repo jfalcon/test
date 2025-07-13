@@ -27,10 +27,18 @@ $color-dark-table-cell-odd-background: white;
 $color-dark-table-cell-odd-text: $color-dark-panel-text;
 $color-dark-table-footer-background: #333;
 $color-dark-table-footer-text: white;
-$color-dark-table-header-1-background: #4caf50;
+$color-dark-table-header-1-background: #a4a4a4;
 $color-dark-table-header-1-text: white;
-$color-dark-table-header-2-background: #66bb6a;
+$color-dark-table-header-2-background: #bdbdbd;
 $color-dark-table-header-2-text: white;
+$color-dark-table-header-1-long-background: #4caf50;
+$color-dark-table-header-1-long-text: white;
+$color-dark-table-header-2-long-background: #66bb6a;
+$color-dark-table-header-2-long-text: white;
+$color-dark-table-header-1-short-background: #af4c4c;
+$color-dark-table-header-1-short-text: white;
+$color-dark-table-header-2-short-background: #bc7070;
+$color-dark-table-header-2-short-text: white;
 $color-dark-text: #fff;
 
 // colors for light mode
@@ -61,6 +69,14 @@ $color-light-table-header-1-background: #4caf50;
 $color-light-table-header-1-text: white;
 $color-light-table-header-2-background: #66bb6a;
 $color-light-table-header-2-text: white;
+$color-light-table-header-1-long-background: #4caf50;
+$color-light-table-header-1-long-text: white;
+$color-light-table-header-2-long-background: #66bb6a;
+$color-light-table-header-2-long-text: white;
+$color-light-table-header-1-short-background: #af4c4c;
+$color-light-table-header-1-short-text: white;
+$color-light-table-header-2-short-background: #bc7070;
+$color-light-table-header-2-short-text: white;
 $color-light-text: #2c3e50;
 
 // sidebar
@@ -108,6 +124,14 @@ $line-height-text: 1.6;
   --color-table-header-1-text: #{$color-dark-table-header-1-text};
   --color-table-header-2-background: #{$color-dark-table-header-2-background};
   --color-table-header-2-text: #{$color-dark-table-header-2-text};
+  --color-table-header-1-long-background: #{$color-dark-table-header-1-long-background};
+  --color-table-header-1-long-text: #{$color-dark-table-header-1-long-text};
+  --color-table-header-2-long-background: #{$color-dark-table-header-2-long-background};
+  --color-table-header-2-long-text: #{$color-dark-table-header-2-long-text};
+  --color-table-header-1-short-background: #{$color-dark-table-header-1-short-background};
+  --color-table-header-1-short-text: #{$color-dark-table-header-1-short-text};
+  --color-table-header-2-short-background: #{$color-dark-table-header-2-short-background};
+  --color-table-header-2-short-text: #{$color-dark-table-header-2-short-text};
   --color-text: #{$color-dark-text};
 }
 
@@ -140,5 +164,13 @@ $line-height-text: 1.6;
   --color-table-header-1-text: #{$color-light-table-header-1-text};
   --color-table-header-2-background: #{$color-light-table-header-2-background};
   --color-table-header-2-text: #{$color-light-table-header-2-text};
+  --color-table-header-1-long-background: #{$color-light-table-header-1-long-background};
+  --color-table-header-1-long-text: #{$color-light-table-header-1-long-text};
+  --color-table-header-2-long-background: #{$color-light-table-header-2-long-background};
+  --color-table-header-2-long-text: #{$color-light-table-header-2-long-text};
+  --color-table-header-1-short-background: #{$color-light-table-header-1-short-background};
+  --color-table-header-1-short-text: #{$color-light-table-header-1-short-text};
+  --color-table-header-2-short-background: #{$color-light-table-header-2-short-background};
+  --color-table-header-2-short-text: #{$color-light-table-header-2-short-text};
   --color-text: #{$color-light-text};
 }

@@ -53,6 +53,38 @@
   .panes {
     @include mixins.flex-gap;
 
+    table.long {
+      thead {
+        // primary header row
+        tr:nth-child(1) th {
+          background-color: var(--color-table-header-1-long-background);
+          color: var(--color-table-header-1-long-text);
+        }
+
+        // secondary header rows
+        tr th {
+          background-color: var(--color-table-header-2-long-background);
+          color: var(--color-table-header-2-long-text);
+        }
+      }
+    }
+
+    table.short {
+      thead {
+        // primary header row
+        tr:nth-child(1) th {
+          background-color: var(--color-table-header-1-short-background);
+          color: var(--color-table-header-1-short-text);
+        }
+
+        // secondary header rows
+        tr th {
+          background-color: var(--color-table-header-2-short-background);
+          color: var(--color-table-header-2-short-text);
+        }
+      }
+    }
+
     > * {
       flex: 1;
     }
