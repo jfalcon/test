@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router';
-
 import { SLUG_ABOUT } from '@/constants';
 
 const Navigation: React.FC = () => {

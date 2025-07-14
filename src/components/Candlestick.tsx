@@ -1,86 +1,30 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { EMA, TrueRange } from 'technicalindicators';
-
+import { EMA } from 'technicalindicators';
+import { DIGITS } from '@/constants';
 import type { ThemeMode } from '@/components/Theme';
-import { setTrueRange } from '@/store/meta';
-import type { AppDispatch } from '@/store';
 import '@/styles/components/Candlestick.scss';
 
 import {
+  create as createChart,
+  getOptions,
+  EMA_COLOR,
+  HISTOGRAM_COLOR_BULLISH,
+  HISTOGRAM_COLOR_BEARISH,
+  type Candle
+} from '@/helpers/chart';
+
+import {
   CandlestickSeries,
-  createChart,
   HistogramSeries,
   LineSeries,
   type IChartApi,
   type CandlestickData,
   type HistogramData,
-  type UTCTimestamp,
 } from 'lightweight-charts';
-
-export interface Candle {
-  time: number; // in seconds
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-  volume: number;
-}
-
-type ChartOptions = {
-  layout: Parameters<IChartApi['applyOptions']>[0]['layout'];
-  grid: Parameters<IChartApi['applyOptions']>[0]['grid'];
-  candlestickOptions: Parameters<ReturnType<IChartApi['addSeries']>['applyOptions']>[0];
-  volumeOptions: Parameters<ReturnType<IChartApi['addSeries']>['applyOptions']>[0];
-};
 
 type ChartProps = {
   data: Candle[];
 };
-
-function getThemeOptions(theme: ThemeMode): ChartOptions {
-  if (theme === 'dark') {
-    return {
-      layout: {
-        background: { color: '#000000' },
-        textColor: '#ffffff',
-      },
-      grid: {
-        vertLines: { color: '#444444' },
-        horzLines: { color: '#444444' },
-      },
-      candlestickOptions: {
-        upColor: '#26a69a',
-        downColor: '#ef5350',
-        wickUpColor: '#26a69a',
-        wickDownColor: '#ef5350',
-      },
-      volumeOptions: {
-        color: '#26a69a',
-      },
-    };
-  } else {
-    return {
-      layout: {
-        background: { color: '#ffffff' },
-        textColor: '#000000',
-      },
-      grid: {
-        vertLines: { color: '#cccccc' },
-        horzLines: { color: '#cccccc' },
-      },
-      candlestickOptions: {
-        upColor: '#4caf50',
-        downColor: '#f44336',
-        wickUpColor: '#4caf50',
-        wickDownColor: '#f44336',
-      },
-      volumeOptions: {
-        color: '#4caf50',
-      },
-    };
-  }
-}
 
 const Candlestick: React.FC<ChartProps> = ({ data }) => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
@@ -88,7 +32,6 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
   const candlestickSeriesRef = useRef<ReturnType<IChartApi['addSeries']> | null>(null);
   const volumeSeriesRef = useRef<ReturnType<IChartApi['addSeries']> | null>(null);
 
-  const dispatch = useDispatch<AppDispatch>();
   const [theme, setTheme] = useState<ThemeMode>('dark');
 
   const emaData = useMemo(() => {
@@ -99,7 +42,7 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
     const ema = EMA.calculate({ period, values: closes });
 
     return ema.map((value, i) => ({
-      time: data[i + period - 1].time as UTCTimestamp,
+      time: data[i + period - 1].time,
       value,
     }));
   }, [data]);
@@ -129,90 +72,37 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    if (!chartContainerRef.current) return;
-    const { layout, grid, candlestickOptions, volumeOptions } = getThemeOptions(theme);
+    if (!chartContainerRef?.current) return;
 
-    const chart = createChart(chartContainerRef.current, {
-      grid,
-      handleScroll: {
-        mouseWheel: true,
-        pressedMouseMove: true,
-        horzTouchDrag: true,
-        vertTouchDrag: true,
-      },
-      handleScale: {
-        mouseWheel: false,
-        pinch: true,
-        axisPressedMouseMove: true,
-      },
-      layout: {
-        attributionLogo: false,
-        fontFamily: 'Arial',
-        fontSize: 12,
-        ...layout,
-      },
-      rightPriceScale: {
-        borderColor: '#555',
-        scaleMargins: { top: 0.2, bottom: 0.25 },
-      },
-      timeScale: {
-        borderColor: '#555',
-        timeVisible: true,
-      },
-    });
+    const { candlestick, grid, layout, volume } = getOptions(theme);
+    const chart = createChart(chartContainerRef.current, grid, layout);
 
     const candlestickSeries = chart.addSeries(CandlestickSeries, {
-      ...candlestickOptions,
+      ...candlestick,
       priceFormat: {
         type: 'price',
-        precision: 5,
-        minMove: 0.00001,
+        precision: DIGITS,
+        minMove: Math.pow(10, -DIGITS),
       },
     });
 
     const volumeSeries = chart.addSeries(HistogramSeries, {
-      ...volumeOptions,
+      ...volume,
       priceFormat: { type: 'volume' },
       priceScaleId: 'volume',
     });
 
+    // 80% for the candles, 10% margin, 10% for the volume
+    chart.priceScale('right').applyOptions({ scaleMargins: { top: 0, bottom: 0.2 } });
+    chart.priceScale('volume').applyOptions({ scaleMargins: { top: 0.9, bottom: 0 } });
+    chart.timeScale().applyOptions({ barSpacing: 15 });
+
     const emaSeries = chart.addSeries(LineSeries, {
-      color: 'orange',
+      color: EMA_COLOR,
       lineWidth: 2,
     });
 
     emaSeries.setData(emaData);
-
-    const highs = data.map(d => d.high);
-    const lows = data.map(d => d.low);
-    const closes = data.map(d => d.close);
-
-    // compute True Ranges
-    const trueRanges = TrueRange.calculate({
-      high: highs,
-      low: lows,
-      close: closes,
-    });
-
-    dispatch(setTrueRange(trueRanges?.at(-1) ?? null));
-
-    chart.priceScale('right').applyOptions({
-      scaleMargins: {
-        top: 0,
-        bottom: 0.2,  // 80% for the candles, 10% margin, 10% for the volume
-      },
-    });
-
-    chart.priceScale('volume').applyOptions({
-      scaleMargins: {
-        top: 0.9,  // 80% for the candles, 10% margin, 10% for the volume
-        bottom: 0,
-      },
-    });
-
-    chart.timeScale().applyOptions({
-      barSpacing: 15, // or 20, 30, etc. depending on how large you want each candle
-    });
 
     chartRef.current = chart;
     candlestickSeriesRef.current = candlestickSeries;
@@ -233,17 +123,22 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    if (!chartRef.current || !candlestickSeriesRef.current || !volumeSeriesRef.current) return;
-    const { layout, grid, candlestickOptions, volumeOptions } = getThemeOptions(theme);
+    if (
+      !chartRef?.current
+      || !candlestickSeriesRef?.current
+      || !volumeSeriesRef?.current
+    ) return;
+
+    const { candlestick, grid, layout, volume } = getOptions(theme);
 
     chartRef.current.applyOptions({ layout, grid });
-    candlestickSeriesRef.current.applyOptions(candlestickOptions);
-    volumeSeriesRef.current.applyOptions(volumeOptions);
+    candlestickSeriesRef.current.applyOptions(candlestick);
+    volumeSeriesRef.current.applyOptions(volume);
   }, [theme]);
 
   const { candlestickData, volumeData } = useMemo(() => {
     const candlestickData: CandlestickData[] = data.map(c => ({
-      time: c.time as UTCTimestamp,
+      time: c.time,
       open: c.open,
       high: c.high,
       low: c.low,
@@ -251,9 +146,9 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
     }));
 
     const volumeData: HistogramData[] = data.map(c => ({
-      time: c.time as UTCTimestamp,
+      time: c.time,
       value: c.volume,
-      color: c.close > c.open ? '#4caf50' : '#f44336',
+      color: c.close > c.open ? HISTOGRAM_COLOR_BULLISH : HISTOGRAM_COLOR_BEARISH,
     }));
 
     return { candlestickData, volumeData };

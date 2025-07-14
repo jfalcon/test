@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Theme from '@/components/Theme';
 import Toggle from '@/components/Toggle';
 

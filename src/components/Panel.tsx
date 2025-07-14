@@ -1,14 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-
 import { DIGITS } from '@/constants';
 import type { RootState } from '@/store';
 import '@/styles/components/Panel.scss';
 
-type PanelProps = {
-};
-
-const Panel: React.FC<PanelProps> = () => {
+const Panel: React.FC = () => {
   const trueRange = useSelector((state: RootState) => state.meta.trueRange);
 
   return (

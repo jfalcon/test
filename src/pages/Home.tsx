@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-
 import { pricedata } from '#/fixtures/priceData';
 import { parseData } from '@/utility/data'
 import { UTC } from '@/timezones';

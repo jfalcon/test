@@ -1,5 +1,4 @@
 import React, { useState, useLayoutEffect } from 'react';
-
 import ModeIcon from '@/assets/mode.svg';
 import '@/styles/components/Theme.scss';
 

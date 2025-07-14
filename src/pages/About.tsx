@@ -1,5 +1,4 @@
 import React from 'react';
-
 import '@/styles/pages/About.scss';
 
 const About: React.FC = () => {

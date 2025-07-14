@@ -1,6 +1,7 @@
 import { MS_IN_MIN } from '@/constants';
-import type { Candle } from '@/components/Candlestick';
+import type { Candle } from '@/helpers/chart';
 import type { Timezone } from '@/timezones';
+import type { UTCTimestamp } from 'lightweight-charts';
 
 /**
  * Parses CSV OHLC data.
@@ -19,7 +20,7 @@ export function parseData(data: string, timezone: Timezone, delimiter = ','): Ca
       const time = Date.UTC(year, month - 1, day, hour, minute) - (timezone.offset * MS_IN_MIN);
 
       return {
-        time,
+        time: time as UTCTimestamp,
         open: parseFloat(open) || 0.0,
         high: parseFloat(high) || 0.0,
         low: parseFloat(low) || 0.0,
