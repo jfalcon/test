@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import '@/styles/Console.scss';
+import '@/styles/components/Console.scss';
 
 const Console: React.FC = () => {
   const [logs, setLogs] = useState<string[]>([]);

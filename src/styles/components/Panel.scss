@@ -1,5 +1,5 @@
-@use 'variables';
-@use 'mixins';
+@use '@/styles/variables';
+@use '@/styles/mixins';
 
 #panel {
   background-color: var(--color-panel-background);

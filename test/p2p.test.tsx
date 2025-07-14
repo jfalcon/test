@@ -1,11 +1,12 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter, Navigate, Route, Routes } from "react-router";
 import { Provider } from 'react-redux';
+
 import { store } from '@/store';
 import { parseData } from '@/utility/data';
 import { pricedata, utcTimestamps } from '#/fixtures/priceData';
 import { NewYork, UTC } from '@/timezones';
-import { MS_IN_MIN } from '@/constants';
+import { SLUG_ABOUT, MS_IN_MIN } from '@/constants';
 import { isColorDifferent } from '@/utility/color';
 
 describe('P2P Tests', () => {
@@ -27,7 +28,7 @@ describe('P2P Tests', () => {
             <Routes>
               <Route path="/" element={<App />}>
                 <Route index element={<Home />} />
-                <Route path="about" element={<About />} />
+                <Route path={SLUG_ABOUT} element={<About />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Route>
             </Routes>
@@ -52,7 +53,7 @@ describe('P2P Tests', () => {
             <Routes>
               <Route path="/" element={<App />}>
                 <Route index element={<Home />} />
-                <Route path="about" element={<About />} />
+                <Route path={SLUG_ABOUT} element={<About />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Route>
             </Routes>
@@ -148,7 +149,7 @@ describe('P2P Tests', () => {
             <Routes>
               <Route path="/" element={<App />}>
                 <Route index element={<Home />} />
-                <Route path="about" element={<About />} />
+                <Route path={SLUG_ABOUT} element={<About />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Route>
             </Routes>
@@ -178,7 +179,7 @@ describe('P2P Tests', () => {
             <Routes>
               <Route path="/" element={<App />}>
                 <Route index element={<Home />} />
-                <Route path="about" element={<About />} />
+                <Route path={SLUG_ABOUT} element={<About />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Route>
             </Routes>
@@ -205,7 +206,7 @@ describe('P2P Tests', () => {
             <Routes>
               <Route path="/" element={<App />}>
                 <Route index element={<Home />} />
-                <Route path="about" element={<About />} />
+                <Route path={SLUG_ABOUT} element={<About />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Route>
             </Routes>

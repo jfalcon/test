@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+
 import { DIGITS } from '@/constants';
 import type { RootState } from '@/store';
-import '@/styles/Panel.scss';
+import '@/styles/components/Panel.scss';
 
 type PanelProps = {
 };

@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import Candlestick from '@/components/Candlestick';
-import Console from '@/components/Console';
-import Panel from '@/components/Panel';
+
 import { pricedata } from '#/fixtures/priceData';
 import { parseData } from '@/utility/data'
 import { UTC } from '@/timezones';
-import '@/styles/App.scss';
+import Candlestick from '@/components/Candlestick';
+import Console from '@/components/Console';
+import Panel from '@/components/Panel';
+import '@/styles/pages/Home.scss';
 
 const data = parseData(pricedata, UTC);
 
@@ -15,13 +16,13 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <div id="home" data-testid="home">
       <Candlestick data={data} />
       <aside>
         <Panel />
         <Console />
       </aside>
-    </>
+    </div>
   );
 };
 

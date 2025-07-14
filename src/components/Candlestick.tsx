@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import type { ThemeMode } from '@/components/Theme';
 import { EMA, TrueRange } from 'technicalindicators';
+
+import type { ThemeMode } from '@/components/Theme';
 import { setTrueRange } from '@/store/meta';
 import type { AppDispatch } from '@/store';
-import '@/styles/Candlestick.scss';
+import '@/styles/components/Candlestick.scss';
 
 import {
   CandlestickSeries,

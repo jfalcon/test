@@ -1,6 +1,7 @@
 import React, { useState, useLayoutEffect } from 'react';
+
 import ModeIcon from '@/assets/mode.svg';
-import '@/styles/Theme.scss';
+import '@/styles/components/Theme.scss';
 
 export type ThemeMode = 'light' | 'dark';
 
