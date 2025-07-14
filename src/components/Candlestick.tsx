@@ -23,10 +23,10 @@ import {
 } from 'lightweight-charts';
 
 type ChartProps = {
-  data: Candle[];
+  seedData: Candle[];
 };
 
-const Candlestick: React.FC<ChartProps> = ({ data }) => {
+const Candlestick: React.FC<ChartProps> = ({ seedData }) => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const candlestickSeriesRef = useRef<ReturnType<IChartApi['addSeries']> | null>(null);
@@ -35,17 +35,17 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
   const [theme, setTheme] = useState<ThemeMode>('dark');
 
   const emaData = useMemo(() => {
-    if (!data || data.length < 13) return [];
+    if (!seedData || seedData.length < 13) return [];
 
-    const closes = data.map(c => c.close);
+    const closes = seedData.map(c => c.close);
     const period = 13;
     const ema = EMA.calculate({ period, values: closes });
 
     return ema.map((value, i) => ({
-      time: data[i + period - 1].time,
+      time: seedData[i + period - 1].time,
       value,
     }));
-  }, [data]);
+  }, [seedData]);
 
   useEffect(() => {
     const updateTheme = () => {
@@ -137,7 +137,7 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
   }, [theme]);
 
   const { candlestickData, volumeData } = useMemo(() => {
-    const candlestickData: CandlestickData[] = data.map(c => ({
+    const candlestickData: CandlestickData[] = seedData.map(c => ({
       time: c.time,
       open: c.open,
       high: c.high,
@@ -145,14 +145,14 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
       close: c.close,
     }));
 
-    const volumeData: HistogramData[] = data.map(c => ({
+    const volumeData: HistogramData[] = seedData.map(c => ({
       time: c.time,
       value: c.volume,
       color: c.close > c.open ? HISTOGRAM_COLOR_BULLISH : HISTOGRAM_COLOR_BEARISH,
     }));
 
     return { candlestickData, volumeData };
-  }, [data]);
+  }, [seedData]);
 
   useEffect(() => {
     candlestickSeriesRef.current?.setData(candlestickData);

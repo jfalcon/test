@@ -1,4 +1,4 @@
-import { MS_IN_MIN } from '@/constants';
+import { MS_IN_MIN, MS_IN_SEC } from '@/constants';
 import type { Candle } from '@/helpers/chart';
 import type { Timezone } from '@/timezones';
 import type { UTCTimestamp } from 'lightweight-charts';
@@ -20,7 +20,7 @@ export function parseData(data: string, timezone: Timezone, delimiter = ','): Ca
       const time = Date.UTC(year, month - 1, day, hour, minute) - (timezone.offset * MS_IN_MIN);
 
       return {
-        time: time as UTCTimestamp,
+        time: (time / MS_IN_SEC) as UTCTimestamp,
         open: parseFloat(open) || 0.0,
         high: parseFloat(high) || 0.0,
         low: parseFloat(low) || 0.0,

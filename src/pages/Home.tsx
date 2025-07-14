@@ -7,7 +7,7 @@ import Console from '@/components/Console';
 import Panel from '@/components/Panel';
 import '@/styles/pages/Home.scss';
 
-const data = parseData(pricedata, UTC);
+const data = parseData(pricedata, UTC).slice(0, 100);
 
 const Home: React.FC = () => {
   useEffect(() => {
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
 
   return (
     <div id="home" data-testid="home">
-      <Candlestick data={data} />
+      <Candlestick seedData={data} />
       <aside>
         <Panel />
         <Console />
