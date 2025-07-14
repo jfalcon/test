@@ -1,16 +1,26 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from "react-router";
 import '@/styles/index.scss'
+import Home from '@/pages/Home.tsx'
+import About from '@/pages/About.tsx'
 import App from '@/App.tsx'
 
-const rootDiv = document.getElementById('root');
+const root = document.getElementById('root');
 
-if (!rootDiv) {
-  throw new Error("React Container not found")
+if (!root) {
+  throw new Error("Main container not found!")
 }
 
-createRoot(rootDiv).render(
+createRoot(root).render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </StrictMode>,
-)
+);
