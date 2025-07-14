@@ -23,7 +23,7 @@ const Navigation: React.FC = () => {
           to={aboutSlug}
           className={location.pathname === aboutSlug ? 'active' : ''}
         >
-          Second Page
+          About
         </Link>
       </div>
     </nav>

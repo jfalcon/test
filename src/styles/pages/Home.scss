@@ -1,5 +1,26 @@
 @use '@/styles/variables';
+@use '@/styles/mixins';
 
-#about {
-  background-color: inherit;
+#home {
+  @include mixins.flex-gap;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  padding: 0 variables.$spacing-large;
+
+  @include mixins.mobile-tablet {
+    flex-direction: column;
+  }
+
+  > * {
+    overflow: auto;
+  }
+
+  > :first-child {
+    flex: 1;
+  }
+
+  > aside {
+    @include mixins.flex-column;
+  }
 }

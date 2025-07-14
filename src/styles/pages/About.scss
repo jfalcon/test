@@ -1,5 +1,6 @@
 @use '@/styles/variables';
 
 #about {
-  background-color: inherit;
+  height: 100%;
+  padding: 0 variables.$spacing-large;
 }

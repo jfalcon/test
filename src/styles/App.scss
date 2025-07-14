@@ -53,28 +53,8 @@
   }
 
   > main {
-    @include mixins.flex-gap;
-    display: flex;
-    flex-direction: row;
     grid-area: main;
     min-height: 0; // prevent grid collapse
-    padding: 0 variables.$spacing-large;
-
-    @include mixins.mobile-tablet {
-      flex-direction: column;
-    }
-
-    > * {
-      overflow: auto;
-    }
-
-    > :first-child {
-      flex: 1;
-    }
-
-    > aside {
-      @include mixins.flex-column;
-    }
   }
 
   > footer {

@@ -219,10 +219,9 @@ const Candlestick: React.FC<ChartProps> = ({ data }) => {
     volumeSeriesRef.current = volumeSeries;
 
     const resizeObserver = new ResizeObserver(() => {
-      chart.resize(
-        chartContainerRef.current!.clientWidth,
-        chartContainerRef.current!.clientHeight
-      );
+      const container = chartContainerRef.current;
+      if (!container) return;
+      chart.resize(container.clientWidth, container.clientHeight);
     });
 
     resizeObserver.observe(chartContainerRef.current);
