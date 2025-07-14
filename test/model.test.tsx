@@ -43,7 +43,8 @@ describe('Model Tests', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId('about')).toBeInTheDocument();
+      const about = screen.getByTestId('about');
+      expect((about.innerHTML || '').trim().length > 0).toBeTruthy();
     });
   });
 });
