@@ -7,7 +7,7 @@ import Home from '@/pages/Home';
 import About from '@/pages/About';
 
 describe('Model Tests', () => {
-  it('should load the panel when visiting the home page', async () => {
+  it('should load the home page panel when visiting the home route', async () => {
     render(
       <Provider store={store}>
         <MemoryRouter initialEntries={['/']}>
@@ -27,7 +27,7 @@ describe('Model Tests', () => {
     });
   });
 
-  it('should not load the panel when visiting the about page', async () => {
+  it('should load the about page when visiting the about route', async () => {
     render(
       <Provider store={store}>
         <MemoryRouter initialEntries={['/about']}>
@@ -43,15 +43,7 @@ describe('Model Tests', () => {
     );
 
     await waitFor(() => {
-      try {
-        // this will throw an error if the element is not found, which
-        // is what we want since the new about page the model creates
-        // should different content on it besides the original page
-        screen.getByTestId('panel')
-        expect(false).toBeTruthy();
-      } catch {
-        expect(true).toBeTruthy();
-      }
+      expect(screen.getByTestId('about')).toBeInTheDocument();
     });
   });
 });
