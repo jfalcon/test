@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { MemoryRouter, Navigate, Route, Routes } from "react-router";
 import { Provider } from 'react-redux';
 import { store } from '@/store';
 import { parseData } from '@/utility/data';
@@ -16,11 +17,21 @@ describe('P2P Tests', () => {
 
   describe('App Component', () => {
     it('renders without crashing', async () => {
-      const { default: App } = await import('../src/App');
+      const { default: App } = await import('@/App');
+      const { default: Home } = await import('@/pages/Home');
+      const { default: About } = await import('@/pages/About');
 
       render(
         <Provider store={store}>
-          <App />
+          <MemoryRouter initialEntries={['/']}>
+            <Routes>
+              <Route path="/" element={<App />}>
+                <Route index element={<Home />} />
+                <Route path="about" element={<About />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Route>
+            </Routes>
+          </MemoryRouter>
         </Provider>
       );
 
@@ -31,11 +42,21 @@ describe('P2P Tests', () => {
     });
 
     it('renders all child components', async () => {
-      const { default: App } = await import('../src/App');
+      const { default: App } = await import('@/App');
+      const { default: Home } = await import('@/pages/Home');
+      const { default: About } = await import('@/pages/About');
 
       render(
         <Provider store={store}>
-          <App />
+          <MemoryRouter initialEntries={['/']}>
+            <Routes>
+              <Route path="/" element={<App />}>
+                <Route index element={<Home />} />
+                <Route path="about" element={<About />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Route>
+            </Routes>
+          </MemoryRouter>
         </Provider>
       );
 
@@ -114,14 +135,24 @@ describe('P2P Tests', () => {
     });
 
     it('toggles between modes', async () => {
-      const { default: App } = await import('../src/App');
+      const { default: App } = await import('@/App');
+      const { default: Home } = await import('@/pages/Home');
+      const { default: About } = await import('@/pages/About');
 
       // set dark mode in localStorage
       window.localStorage.setItem('theme', 'dark');
 
       render(
         <Provider store={store}>
-          <App />
+          <MemoryRouter initialEntries={['/']}>
+            <Routes>
+              <Route path="/" element={<App />}>
+                <Route index element={<Home />} />
+                <Route path="about" element={<About />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Route>
+            </Routes>
+          </MemoryRouter>
         </Provider>
       );
 
@@ -134,14 +165,24 @@ describe('P2P Tests', () => {
     });
 
     it('remembers light theme preference', async () => {
-      const { default: App } = await import('../src/App');
+      const { default: App } = await import('@/App');
+      const { default: Home } = await import('@/pages/Home');
+      const { default: About } = await import('@/pages/About');
 
       // set dark mode in localStorage
       window.localStorage.setItem('theme', 'light');
 
       render(
         <Provider store={store}>
-          <App />
+          <MemoryRouter initialEntries={['/']}>
+            <Routes>
+              <Route path="/" element={<App />}>
+                <Route index element={<Home />} />
+                <Route path="about" element={<About />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Route>
+            </Routes>
+          </MemoryRouter>
         </Provider>
       );
 
@@ -151,14 +192,24 @@ describe('P2P Tests', () => {
     });
 
     it('remembers dark theme preference', async () => {
-      const { default: App } = await import('../src/App');
+      const { default: App } = await import('@/App');
+      const { default: Home } = await import('@/pages/Home');
+      const { default: About } = await import('@/pages/About');
 
       // set dark mode in localStorage
       window.localStorage.setItem('theme', 'dark');
 
       render(
         <Provider store={store}>
-          <App />
+          <MemoryRouter initialEntries={['/']}>
+            <Routes>
+              <Route path="/" element={<App />}>
+                <Route index element={<Home />} />
+                <Route path="about" element={<About />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Route>
+            </Routes>
+          </MemoryRouter>
         </Provider>
       );
 

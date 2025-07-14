@@ -14,11 +14,11 @@ const Panel: React.FC<PanelProps> = () => {
     <section id="panel" data-testid="panel">
       <div className="inputs">
         <div>1</div>
-        <div><input type="text" value={0.123456} /></div>
+        <div><input type="text" defaultValue={0.123456} /></div>
         <div>3</div>
-        <div><input type="text" value={0.123456} /></div>
+        <div><input type="text" defaultValue={0.123456} /></div>
         <div>5</div>
-        <div><input type="text" value={0.123456} /></div>
+        <div><input type="text" defaultValue={0.123456} /></div>
         <div>True Range</div>
         <div><data value="0">{trueRange && trueRange.toFixed(DIGITS)}</data></div>
         <div>Balance</div>

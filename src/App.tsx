@@ -18,7 +18,7 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <div id="app" data-testid="app" className={isSidebarCollapsed ? 'close' : ''}>
-        <nav>
+        <nav id="nav" data-testid="nav">
           <h1>Chart</h1>
           <div>
             <Link
