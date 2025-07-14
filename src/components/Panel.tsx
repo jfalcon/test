@@ -1,11 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { DIGITS } from '@/constants';
 import type { RootState } from '@/store';
 import '@/styles/components/Panel.scss';
 
 const Panel: React.FC = () => {
-  const trueRange = useSelector((state: RootState) => state.meta.trueRange);
+  const candles = useSelector((state: RootState) => state.chart.candles);
 
   return (
     <section id="panel" data-testid="panel">
@@ -16,8 +15,8 @@ const Panel: React.FC = () => {
         <div><input type="text" defaultValue={0.123456} /></div>
         <div>5</div>
         <div><input type="text" defaultValue={0.123456} /></div>
-        <div>True Range</div>
-        <div><data value="0">{trueRange && trueRange.toFixed(DIGITS)}</data></div>
+        <div>Candles</div>
+        <div><data value="0">{candles?.length}</data></div>
         <div>Balance</div>
         <div><data value="42">42.00</data></div>
         <div>11</div>

@@ -1,6 +1,6 @@
 @use '@/styles/variables';
 
-#candlestick {
+#chart {
   > div {
     min-height: 0;    // prevent flexbox from blowing up chart.js
     min-width: 0;     // prevent flexbox from blowing up chart.js

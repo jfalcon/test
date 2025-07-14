@@ -63,7 +63,7 @@ describe('P2P Tests', () => {
 
       await waitFor(() => {
         expect(screen.getByTestId('app')).toBeInTheDocument();
-        expect(screen.getByTestId('candlestick')).toBeInTheDocument();
+        expect(screen.getByTestId('chart')).toBeInTheDocument();
         expect(screen.getByTestId('console')).toBeInTheDocument();
         expect(screen.getByTestId('panel')).toBeInTheDocument();
         expect(screen.getByTestId('theme')).toBeInTheDocument();

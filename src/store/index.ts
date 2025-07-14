@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import chartSlice, { type ChartState } from './chart';
 import metaSlice, { type MetaState } from './meta';
 import todoSlice, { loadTodos, saveTodos } from './todos';
 import type { TodoState } from './todos';
 
 export interface RootState {
+  chart: ChartState;
   meta: MetaState;
   todos: TodoState;
 }
@@ -11,6 +13,7 @@ export interface RootState {
 export function setupStore(preloadedState?: RootState) {
   return configureStore({
     reducer: {
+      chart: chartSlice,
       meta: metaSlice,
       todos: todoSlice,
     },
@@ -20,6 +23,9 @@ export function setupStore(preloadedState?: RootState) {
 
 // in the future this can be modified to load all of state if desired
 export const store = setupStore({
+  chart: {
+    candles: [],
+  },
   meta: {
     trueRange: null,
   },

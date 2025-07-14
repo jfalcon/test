@@ -1,22 +1,28 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { pricedata } from '#/fixtures/priceData';
 import { parseData } from '@/utility/data'
 import { UTC } from '@/timezones';
-import Candlestick from '@/components/Candlestick';
+import { setCandles } from '@/store/chart';
 import Console from '@/components/Console';
+import Chart from '@/components/Chart';
 import Panel from '@/components/Panel';
 import '@/styles/pages/Home.scss';
 
-const data = parseData(pricedata, UTC).slice(0, 100);
+const candles = parseData(pricedata, UTC).slice(0, 100);
 
 const Home: React.FC = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    console.log('Hello World!', 'Life is like a box of chocolates.');
+    dispatch(setCandles(candles));
+
+    console.log('Candles', candles.length);
   }, []);
 
   return (
     <div id="home" data-testid="home">
-      <Candlestick seedData={data} />
+      <Chart />
       <aside>
         <Panel />
         <Console />
