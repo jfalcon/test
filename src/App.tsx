@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Provider } from 'react-redux';
 import { Outlet } from 'react-router';
 
@@ -12,10 +12,6 @@ import '@/styles/App.scss';
 const App: React.FC = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const toggleSidebar = () => setIsSidebarCollapsed(!isSidebarCollapsed);
-
-  useEffect(() => {
-    console.log('Hello World!', 'Life is like a box of chocolates.');
-  }, []);
 
   return (
     <Provider store={store}>
