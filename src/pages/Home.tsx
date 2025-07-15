@@ -9,14 +9,14 @@ import Chart from '@/components/Chart';
 import Panel from '@/components/Panel';
 import '@/styles/pages/Home.scss';
 
-const candles = parseData(pricedata, UTC);
+let candles = parseData(pricedata, UTC);
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setCandles(candles));
-    console.log('Hello World!');
+    console.log('Hello World!', candles.length);
   }, []);
 
   return (
