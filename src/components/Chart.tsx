@@ -162,7 +162,7 @@ const Candlestick: React.FC = () => {
 
   // this needs a container to resize properly
   return (
-    <section id="candlestick" data-testid="candlestick">
+    <section id="chart" data-testid="chart">
       <div ref={chartContainerRef} style={{ width: '100%', height: '100%' }} />
     </section>
   );

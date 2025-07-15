@@ -6,7 +6,7 @@ import { store } from '@/store';
 import { parseData } from '@/utility/data';
 import { pricedata, utcTimestamps } from '#/fixtures/priceData';
 import { NewYork, UTC } from '@/timezones';
-import { SLUG_ABOUT, MS_IN_MIN } from '@/constants';
+import { MS_IN_SEC, SEC_IN_MIN, SLUG_ABOUT } from '@/constants';
 import { isColorDifferent } from '@/utility/color';
 
 describe('P2P Tests', () => {
@@ -91,10 +91,10 @@ describe('P2P Tests', () => {
     describe('parseData', () => {
       it('parses New York times correctly', () => {
         // ignore DST for now
-        const offset = NewYork.offset * MS_IN_MIN;
+        const offset = NewYork.offset * SEC_IN_MIN;
 
         const candles = parseData(pricedata, NewYork).filter((c, x) => {
-          return c.time === utcTimestamps[x] - offset;
+          return c.time === (utcTimestamps[x] / MS_IN_SEC) - offset;
         });
 
         expect(candles.length).toStrictEqual(utcTimestamps.length);
@@ -102,7 +102,7 @@ describe('P2P Tests', () => {
 
       it('parses UTC times correctly', () => {
         const candles = parseData(pricedata, UTC).filter((c, x) => {
-          return c.time === utcTimestamps[x];
+          return c.time === utcTimestamps[x] / MS_IN_SEC;
         });
 
         expect(candles.length).toStrictEqual(utcTimestamps.length);
