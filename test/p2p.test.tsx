@@ -29,8 +29,8 @@ describe('P2P Tests', () => {
               <Route path="/" element={<App />}>
                 <Route index element={<Home />} />
                 <Route path={SLUG_ABOUT} element={<About />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
               </Route>
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </MemoryRouter>
         </Provider>
@@ -54,8 +54,8 @@ describe('P2P Tests', () => {
               <Route path="/" element={<App />}>
                 <Route index element={<Home />} />
                 <Route path={SLUG_ABOUT} element={<About />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
               </Route>
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </MemoryRouter>
         </Provider>
@@ -150,8 +150,8 @@ describe('P2P Tests', () => {
               <Route path="/" element={<App />}>
                 <Route index element={<Home />} />
                 <Route path={SLUG_ABOUT} element={<About />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
               </Route>
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </MemoryRouter>
         </Provider>
@@ -180,8 +180,8 @@ describe('P2P Tests', () => {
               <Route path="/" element={<App />}>
                 <Route index element={<Home />} />
                 <Route path={SLUG_ABOUT} element={<About />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
               </Route>
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </MemoryRouter>
         </Provider>
@@ -207,8 +207,8 @@ describe('P2P Tests', () => {
               <Route path="/" element={<App />}>
                 <Route index element={<Home />} />
                 <Route path={SLUG_ABOUT} element={<About />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
               </Route>
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </MemoryRouter>
         </Provider>

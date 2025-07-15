@@ -16,7 +16,9 @@ const Panel: React.FC = () => {
         <div>5</div>
         <div><input type="text" defaultValue={0.123456} /></div>
         <div>Candles</div>
-        <div><data value="0">{candles?.length}</data></div>
+        <div>
+          <data value={candles?.length} data-testid="candle-length">{candles?.length}</data>
+        </div>
         <div>Balance</div>
         <div><data value="42">42.00</data></div>
         <div>11</div>
