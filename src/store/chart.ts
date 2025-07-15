@@ -23,8 +23,8 @@ export const chartSlice = createSlice({
       state.candles.push(action.payload)
     },
     setCandles: (state, action: PayloadAction<Candle[]>) => {
-      state.candles = action.payload;
-      state.candles.splice(0, MAX_CANDLES);
+      // can use structuredClone for a deep copy if needed
+      state.candles = action.payload.slice(-MAX_CANDLES);
     },
   },
 });

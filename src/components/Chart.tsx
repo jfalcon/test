@@ -35,7 +35,7 @@ const Candlestick: React.FC = () => {
   const [theme, setTheme] = useState<ThemeMode>('dark');
 
   const emaData = useMemo(() => {
-    if (!candles || ((candles.length === 0) && (candles.length < 13))) return [];
+    if (!candles || candles.length === 0 || candles.length < 13) return [];
     if (candles.length > MAX_CANDLES) return [];
 
     const closes = candles.map(c => c.close);
