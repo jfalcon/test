@@ -2,10 +2,10 @@
 
 ## Running tests
 
-This command builds a docker image with the code of this repository and runs the repository's tests.
+This command builds a docker image with the code of this repository and runs the repository's tests
 
 ```sh
-./scripts/build_docker.sh my_app
+./build_docker.sh my_app
 docker run -t my_app ./run_tests.sh
 ```
 
@@ -14,7 +14,7 @@ docker run -t my_app ./run_tests.sh
 This example runs all tests matching the name "basic":
 
 ```sh
-./scripts/build_docker.sh my_app
+./build_docker.sh my_app
 docker run -t my_app ./run_tests.sh basic
 ```
 
@@ -23,6 +23,6 @@ docker run -t my_app ./run_tests.sh basic
 Run this command to enable hot reloading via docker.
 
 ```sh
-./scripts/build_docker.sh my_app
+./build_docker.sh my_app
 docker run --network=host -v .:/app -it my_app npm exec vite dev --host
 ```
