@@ -11,11 +11,23 @@ const __dirname = path.dirname(__filename);
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  build: {
+    outDir: 'dist'
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '#': path.resolve(__dirname, 'test'),
     },
+  },
+  server: {
+    port: 5173,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true
+      }
+    }
   },
   test: {
     environment: 'jsdom',
