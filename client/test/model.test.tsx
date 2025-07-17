@@ -55,11 +55,10 @@ describe('Model Tests', () => {
       </StrictMode>
     );
 
+    const tickButton = screen.getByTestId('tick-button');
+    fireEvent.click(tickButton);
 
     await waitFor(() => {
-      const tickButton = screen.getByTestId('tick-button');
-      fireEvent.click(tickButton);
-
       const expectedUrl1 = 'http://localhost:3000';
       const expectedUrl2 = 'http://localhost:3000/';
 
