@@ -19,5 +19,8 @@ if [ -f "$OUT_FILE" ]; then
 fi
 
 # avoid including zip files (if rerun)
-zip -r "$OUT_FILE" . -x "**/*.zip" "**/.git/*" "**/.vscode/*" "**/dist/*" "**/node_modules/*"
+zip -r "$OUT_FILE" . -x "*.zip" ".vscode/*" ".git/*" "client/.git/*" "server/.git/*" \
+"dist/*" "client/dist/*" "server/dist/*" \
+"node_modules/*" "client/node_modules/*" "server/node_modules/*"
+
 cd - > /dev/null 2>&1
