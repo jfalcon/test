@@ -10,7 +10,6 @@ import { SLUG_ABOUT } from '@/constants';
 
 describe('Panel fetch test', () => {
   beforeEach(() => {
-    // ✅ Clean and assign a mock that behaves correctly for async/await
     globalThis.fetch = vi.fn().mockResolvedValue({
       ok: true,
       status: 200,
@@ -44,10 +43,8 @@ describe('Panel fetch test', () => {
       </StrictMode>
     );
 
-    // ✅ Click outside waitFor
     fireEvent.click(screen.getByTestId('tick-button'));
 
-    // ✅ Assertion inside waitFor
     await waitFor(() => {
       expect(globalThis.fetch).toHaveBeenCalledTimes(1);
 
