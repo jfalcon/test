@@ -1,10 +1,2 @@
-import express from 'express';
-const app = express();
-const port = 3000;
-app.use(express.json());
-app.get('/api/hello', (req, res) => {
-    res.json({ message: 'Hello from Express!' });
-});
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
+var d=Object.defineProperty;var x=(o,e)=>{for(var i in e)d(o,i,{get:e[i],enumerable:!0})};import{createServer as T}from"node:http";var m=(s=>(s.Development="development",s.Production="production",s.Test="test",s))(m||{}),g={env:m[process.env.NODE_ENV||"development"],port:parseInt(process.env.DEFAULT_PORT??"3000",10)||3e3},n=g;import p from"../../node_modules/express/index.js";import{Router as h}from"../../node_modules/express/index.js";var r={};x(r,{index:()=>v});function v(o,e){e.json({message:"The home controller is great."})}var f=h();f.get("/",r.index);var c=f;function u(o){o.use("/",c)}var t=p();t.use(p.json());t.use(p.urlencoded({extended:!0}));console.info("bro");u(t);var l=t;var a=async()=>{T(l).listen(n.port,"localhost",()=>{console.info(`Server is running on port ${n.port}.`)}).on("error",e=>console.error(e.message))};a();
+//# sourceMappingURL=index.js.map

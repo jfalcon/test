@@ -1,13 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
+    "lib": ["ES2023"],
     "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "rootDir": "app",
     "skipLibCheck": true,
-    "moduleResolution": "Node"
+    "strict": true,
+    "target": "ES2023",
+
+    // paths
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["app/*"],
+      "#/*": ["test/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["app"]
 }
