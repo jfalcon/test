@@ -4,6 +4,6 @@ import * as controllers from '@/controllers';
 const router = Router();
 
 // showing an index example with barrel imports
-router.get('/', controllers.home.index);
+router.get('/', controllers.price.index);
 
 export default router;

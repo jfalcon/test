@@ -1,6 +1,6 @@
 import { Application } from 'express';
-import homeRoutes from './home';
+import priceRoutes from './price';
 
 export function registerRoutes(app: Application): void {
-  app.use('/', homeRoutes);
+  app.use('/', priceRoutes);
 }
