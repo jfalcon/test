@@ -10,11 +10,11 @@
     "server"
   ],
   "scripts": {
-    "build": "npm run build -w client && npm run build -w server",
-    "dev": "concurrently \"npm run dev -w client\" \"npm run dev -w server\"",
+    "build": "npm run build -w server && npm run build -w client",
+    "dev": "concurrently \"npm run dev -w server\" \"npm run dev -w client\"",
     "lint": "npm run lint -w client",
-    "start": "concurrently \"npm start -w client\" \"npm start -w server\"",
-    "test": "npm test -w client"
+    "start": "concurrently \"npm start -w server\" \"npm start -w client\"",
+    "test": "npm test -w server && npm test -w client"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
