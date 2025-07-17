@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import * as controllers from '@/controllers';
+import * as priceControllers from '@/controllers/price';
 
-const router = Router();
+const priceRouter = Router();
 
 // showing an index example with barrel imports
-router.get('/', controllers.price.index);
+priceRouter.get('/', priceControllers.index);
 
-export default router;
+export default priceRouter;
