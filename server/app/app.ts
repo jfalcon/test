@@ -6,7 +6,7 @@ const app = express();
 // first add extra middleware
 app.use(express.json()); // replaces body-parser
 app.use(express.urlencoded({ extended: true }));
-  console.info("bro");
+
 // then register all routes
 registerRoutes(app);
 

@@ -7,7 +7,7 @@
     "build": "tsc -b && vite build",
     "dev": "vite",
     "lint": "eslint .",
-    "start": "vite preview",
+    "start": "npm run build && vite preview",
     "test": "vitest"
   },
   "dependencies": {

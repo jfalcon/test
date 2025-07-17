@@ -1,5 +1,5 @@
 {
-  "exec": "ts-node --esm app/index.ts",
+  "exec": "tsx app/index.ts",
   "ext": ".js,.json,.mjs,.ts",
   "ignore": ["test", "node_modules", "app/**/*.test.ts"],
   "watch": ["app"]
