@@ -49,7 +49,8 @@ describe('Panel fetch test', () => {
       expect(globalThis.fetch).toHaveBeenCalledTimes(1);
 
       expect(globalThis.fetch).toHaveBeenCalledWith(
-        expect.stringMatching(/^http:\/\/localhost:3000\/?$/)
+        expect.stringMatching(/^http:\/\/localhost:3000\/?$/),
+        expect.anything()
       );
     });
   });
