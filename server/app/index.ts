@@ -7,9 +7,9 @@ import { server } from '@/server';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// this is the entry point, we can add any code
-// we want prior to the server starting
+// we can add any code we want prior to the server starting
 const dataFile = path.resolve(__dirname, '..', 'fixtures', 'eurusd_m5_2010.csv');
-await init(dataFile);  console.log(dataFile);
+await init(dataFile);
 
+// this is the entry point
 await server();

@@ -1,4 +1,4 @@
-import React from 'react';
+import type { MouseEvent } from 'react';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/store';
 import '@/styles/components/Panel.scss';
@@ -6,18 +6,36 @@ import '@/styles/components/Panel.scss';
 const Panel: React.FC = () => {
   const candles = useSelector((state: RootState) => state.chart.candles);
 
+  const handleClick = async (_event: MouseEvent<HTMLButtonElement>) => {
+    try {
+      const response = await fetch('http://localhost:3000/');
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const candle = await response.text();
+      console.log('Fetched candle:', candle);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log('Fetch failed:', error.message);
+      } else {
+        console.log('Fetch failed');
+      }
+    }
+  };
+
   return (
     <section id="panel" data-testid="panel">
       <div className="inputs">
         <div>1</div>
-        <div><input type="text" defaultValue={0.123456} /></div>
+        <div><button data-testid="tick-button" onClick={handleClick}>Tick</button></div>
         <div>3</div>
         <div><input type="text" defaultValue={0.123456} /></div>
         <div>5</div>
         <div><input type="text" defaultValue={0.123456} /></div>
         <div>Candles</div>
         <div>
-          <data value={candles?.length} data-testid="candle-length">{candles?.length}</data>
+          <data value={candles?.length}>{candles?.length}</data>
         </div>
         <div>Balance</div>
         <div><data value="42">42.00</data></div>

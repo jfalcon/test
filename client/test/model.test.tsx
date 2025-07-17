@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Navigate, Route, Routes } from 'react-router';
 import { Provider } from 'react-redux';
 import { store } from '@/store';
@@ -10,7 +10,35 @@ import About from '@/pages/About';
 import { SLUG_ABOUT } from '@/constants';
 
 describe('Model Tests', () => {
-  it('should load the candlestick data from state', async () => {
+  afterEach(() => {
+    vi.resetAllMocks();
+    vi.restoreAllMocks();
+    vi.resetModules(); // resets cached module imports between tests
+  });
+
+  it('fetch should be called with the correct URL', async () => {
+    const mockFetch = vi.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({ not: 'used' }),
+        status: 200,
+        statusText: 'OK',
+        headers: new Headers(),
+        redirected: false,
+        type: 'basic',
+        url: '',
+        clone: () => new Response(),
+        body: null,
+        bodyUsed: false,
+        arrayBuffer: async () => new ArrayBuffer(0),
+        blob: async () => new Blob(),
+        formData: async () => new FormData(),
+        text: async () => '{"line":"2010.01.03,22:25,1.431500,1.431700,1.431400,1.431600,0"}'
+      } as Response)
+    );
+
+    globalThis.fetch = mockFetch;
+
     render(
       <StrictMode>
         <Provider store={store}>
@@ -27,11 +55,17 @@ describe('Model Tests', () => {
       </StrictMode>
     );
 
-    await waitFor(() => {
-      const candleData = screen.getByTestId('candle-length');
-      const candleCount = parseInt(candleData?.getAttribute('value') ?? '', 10) || 0;
 
-      expect(candleCount).not.toStrictEqual(0);
+    await waitFor(() => {
+      const tickButton = screen.getByTestId('tick-button');
+      fireEvent.click(tickButton);
+
+      const expectedUrl1 = 'http://localhost:3000';
+      const expectedUrl2 = 'http://localhost:3000/';
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        expect.stringMatching(new RegExp(`^${expectedUrl1}|${expectedUrl2}$`, 'i'))
+      );
     });
   });
 });
