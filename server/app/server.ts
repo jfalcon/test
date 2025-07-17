@@ -1,13 +1,12 @@
 import { createServer } from "node:http";
+import config from '@/config';
 import app from "@/app";
-
-const PORT = 3000;
 
 export const server = async () => {
   const server = createServer(app);
 
-  server.listen(PORT, 'localhost', () => {
-    console.info(`Server is running on port ${PORT}.`);
+  server.listen(config.port, 'localhost', () => {
+    console.info(`Server is running on port ${config.port}.`);
   })
   .on('error', (e: Error) => console.error(e.message));
 };
