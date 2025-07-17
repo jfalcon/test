@@ -1,44 +1,33 @@
-import { StrictMode } from 'react'
+import { StrictMode } from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Navigate, Route, Routes } from 'react-router';
 import { Provider } from 'react-redux';
 import { store } from '@/store';
-
 import App from '@/App';
 import Home from '@/pages/Home';
 import About from '@/pages/About';
 import { SLUG_ABOUT } from '@/constants';
 
-describe('Model Tests', () => {
+describe('Panel fetch test', () => {
+  beforeEach(() => {
+    // ✅ Clean and assign a mock that behaves correctly for async/await
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      statusText: 'OK',
+      text: vi.fn().mockResolvedValue(
+        '{"line":"2010.01.03,22:25,1.431500,1.431700,1.431400,1.431600,0"}'
+      ),
+    } as unknown as Response);
+  });
+
   afterEach(() => {
     vi.resetAllMocks();
     vi.restoreAllMocks();
-    vi.resetModules(); // resets cached module imports between tests
+    vi.resetModules();
   });
 
-  it('fetch should be called with the correct URL', async () => {
-    const mockFetch = vi.fn(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve({ not: 'used' }),
-        status: 200,
-        statusText: 'OK',
-        headers: new Headers(),
-        redirected: false,
-        type: 'basic',
-        url: '',
-        clone: () => new Response(),
-        body: null,
-        bodyUsed: false,
-        arrayBuffer: async () => new ArrayBuffer(0),
-        blob: async () => new Blob(),
-        formData: async () => new FormData(),
-        text: async () => '{"line":"2010.01.03,22:25,1.431500,1.431700,1.431400,1.431600,0"}'
-      } as Response)
-    );
-
-    globalThis.fetch = mockFetch;
-
+  it('calls fetch once with the expected URL when clicking Tick', async () => {
     render(
       <StrictMode>
         <Provider store={store}>
@@ -55,15 +44,16 @@ describe('Model Tests', () => {
       </StrictMode>
     );
 
-    const tickButton = screen.getByTestId('tick-button');
-    fireEvent.click(tickButton);
+    // ✅ Click outside waitFor
+    fireEvent.click(screen.getByTestId('tick-button'));
 
+    // ✅ Assertion inside waitFor
     await waitFor(() => {
-      const expectedUrl1 = 'http://localhost:3000';
-      const expectedUrl2 = 'http://localhost:3000/';
+      expect(globalThis.fetch).toHaveBeenCalledTimes(1);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringMatching(new RegExp(`^${expectedUrl1}|${expectedUrl2}$`, 'i'))
+      expect(globalThis.fetch).toHaveBeenCalledWith(
+        expect.stringMatching(/^http:\/\/localhost:3000\/?$/),
+        expect.any(Object)
       );
     });
   });
